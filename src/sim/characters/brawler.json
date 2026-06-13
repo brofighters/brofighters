@@ -1,0 +1,111 @@
+{
+  "id": "brawler",
+  "name": "Brawler",
+  "spriteSheet": null,
+  "body": { "w": 22, "d": 16, "h": 58 },
+  "walkSpeedX": 4.2,
+  "walkSpeedDepth": 2.6,
+  "jumpVelocity": 14,
+
+  "frames": [
+    { "id": "idle0", "spriteRect": [0, 0, 0, 0], "durationTicks": 32 },
+    { "id": "idle1", "spriteRect": [0, 0, 0, 0], "durationTicks": 32 },
+
+    { "id": "walk0", "spriteRect": [0, 0, 0, 0], "durationTicks": 7 },
+    { "id": "walk1", "spriteRect": [0, 0, 0, 0], "durationTicks": 7 },
+    { "id": "walk2", "spriteRect": [0, 0, 0, 0], "durationTicks": 7 },
+    { "id": "walk3", "spriteRect": [0, 0, 0, 0], "durationTicks": 7 },
+
+    { "id": "jump0", "spriteRect": [0, 0, 0, 0], "durationTicks": 6 },
+    { "id": "block0", "spriteRect": [0, 0, 0, 0], "durationTicks": 6 },
+    { "id": "hit0", "spriteRect": [0, 0, 0, 0], "durationTicks": 6 },
+    { "id": "kd0", "spriteRect": [0, 0, 0, 0], "durationTicks": 6 },
+
+    { "id": "p1_0", "spriteRect": [0, 0, 0, 0], "durationTicks": 3 },
+    {
+      "id": "p1_1",
+      "spriteRect": [0, 0, 0, 0],
+      "durationTicks": 4,
+      "cancelInto": ["punch2"],
+      "hitboxes": [
+        { "x": 42, "z": 0, "h": 72, "w": 20, "d": 18, "hh": 16,
+          "damage": 6, "hitstun": 12, "knockbackX": 3, "knockbackH": 0 }
+      ]
+    },
+    { "id": "p1_2", "spriteRect": [0, 0, 0, 0], "durationTicks": 6, "cancelInto": ["punch2"] },
+
+    { "id": "p2_0", "spriteRect": [0, 0, 0, 0], "durationTicks": 3 },
+    {
+      "id": "p2_1",
+      "spriteRect": [0, 0, 0, 0],
+      "durationTicks": 4,
+      "cancelInto": ["punch3"],
+      "hitboxes": [
+        { "x": 44, "z": 0, "h": 70, "w": 20, "d": 18, "hh": 16,
+          "damage": 7, "hitstun": 13, "knockbackX": 4, "knockbackH": 0 }
+      ]
+    },
+    { "id": "p2_2", "spriteRect": [0, 0, 0, 0], "durationTicks": 7, "cancelInto": ["punch3"] },
+
+    { "id": "p3_0", "spriteRect": [0, 0, 0, 0], "durationTicks": 4 },
+    {
+      "id": "p3_1",
+      "spriteRect": [0, 0, 0, 0],
+      "durationTicks": 5,
+      "hitboxes": [
+        { "x": 48, "z": 0, "h": 68, "w": 24, "d": 20, "hh": 22,
+          "damage": 12, "hitstun": 18, "knockbackX": 8, "knockbackH": 5 }
+      ]
+    },
+    { "id": "p3_2", "spriteRect": [0, 0, 0, 0], "durationTicks": 14 },
+
+    { "id": "sp_0", "spriteRect": [0, 0, 0, 0], "durationTicks": 4, "impulse": { "h": 9, "x": 4 } },
+    {
+      "id": "sp_1",
+      "spriteRect": [0, 0, 0, 0],
+      "durationTicks": 6,
+      "hitboxes": [
+        { "x": 36, "z": 0, "h": 86, "w": 26, "d": 22, "hh": 40,
+          "damage": 16, "hitstun": 24, "knockbackX": 6, "knockbackH": 12, "knockdown": true }
+      ]
+    },
+    {
+      "id": "sp_2",
+      "spriteRect": [0, 0, 0, 0],
+      "durationTicks": 4,
+      "hitboxes": [
+        { "x": 34, "z": 0, "h": 96, "w": 24, "d": 22, "hh": 30,
+          "damage": 4, "hitstun": 20, "knockbackX": 4, "knockbackH": 8, "knockdown": true }
+      ]
+    },
+    { "id": "sp_3", "spriteRect": [0, 0, 0, 0], "durationTicks": 18 }
+  ],
+
+  "states": {
+    "idle":      { "frames": ["idle0", "idle1"], "loop": true, "control": "free" },
+    "walk":      { "frames": ["walk0", "walk1", "walk2", "walk3"], "loop": true, "control": "free" },
+    "jump":      { "frames": ["jump0"], "loop": true, "control": "free" },
+    "block":     { "frames": ["block0"], "loop": true, "control": "free" },
+    "hit":       { "frames": ["hit0"], "loop": true, "control": "locked" },
+    "knockdown": { "frames": ["kd0"], "loop": true, "control": "locked" },
+
+    "punch1": { "frames": ["p1_0", "p1_1", "p1_2"], "control": "locked", "attack": true, "next": "idle" },
+    "punch2": { "frames": ["p2_0", "p2_1", "p2_2"], "control": "locked", "attack": true, "next": "idle" },
+    "punch3": { "frames": ["p3_0", "p3_1", "p3_2"], "control": "locked", "attack": true, "next": "idle" },
+
+    "special": { "frames": ["sp_0", "sp_1", "sp_2", "sp_3"], "control": "locked", "attack": true, "next": "idle" }
+  },
+
+  "combos": {
+    "punch": ["punch1", "punch2", "punch3"]
+  },
+
+  "specials": [
+    {
+      "name": "Rising Fist",
+      "inputSequence": ["block", "back", "jump"],
+      "windowTicks": 30,
+      "state": "special"
+    }
+  ]
+}
