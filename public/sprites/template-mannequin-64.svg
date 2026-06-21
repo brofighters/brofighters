@@ -1,0 +1,1437 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="1024" viewBox="0 0 768 1024">
+  <style>
+    .cell { fill: none; stroke: #3a3a3a; stroke-width: 1; }
+    .baseline { stroke: #58a6ff; stroke-width: 0.7; stroke-dasharray: 3 3; opacity: 0.65; }
+    .num, .label { fill: #7d8590; font-family: ui-monospace, Consolas, monospace; font-size: 7px; }
+    .label { font-size: 6px; }
+    .shadow { fill: #000; opacity: 0.18; }
+    .body { stroke-linecap: round; stroke-linejoin: round; }
+    .chunky .arm { stroke: #c7cdd6; stroke-width: 9; }
+    .chunky .arm.back { stroke: #9aa4b2; }
+    .chunky .leg { stroke: #707b88; stroke-width: 10; }
+    .chunky .leg.back { stroke: #56616e; }
+    .chunky .torso { fill: #c7cdd6; stroke: #424b57; stroke-width: 3; }
+    .chunky .pants { fill: #707b88; stroke: #424b57; stroke-width: 3; }
+    .chunky .head { fill: #d7dde5; stroke: #424b57; stroke-width: 3; }
+    .chunky .face { fill: #303844; stroke: none; }
+    .chunky .glove { fill: #d7dde5; stroke: #424b57; stroke-width: 2.5; }
+    .chunky .glove.back { fill: #aeb7c2; }
+    .chunky .boot { fill: #444d59; stroke: #303844; stroke-width: 2.5; }
+    .chunky .boot.back { fill: #303844; }
+    .chunky .hint { stroke: #eef2f6; stroke-width: 2.5; opacity: 0.28; fill: none; }
+    .hit-fx, .kick-fx { fill: none; stroke: #f5f7fa; stroke-width: 4; stroke-linecap: round; opacity: 0.85; }
+    .dash-fx { fill: none; stroke: #9aa4b2; stroke-width: 3; stroke-linecap: round; opacity: 0.55; }
+    .over-fx { fill: none; stroke: #e3b341; stroke-width: 3; stroke-linecap: round; opacity: 0.75; }
+    .block-fx { stroke: #8ab4ff; stroke-width: 3; stroke-linecap: round; opacity: 0.85; }
+    .break-fx { stroke: #ff7b72; stroke-width: 3; stroke-linecap: round; opacity: 0.9; }
+    .impact-fx { stroke: #f85149; stroke-width: 3; stroke-linecap: round; opacity: 0.8; }
+  </style>
+<g transform="translate(0 0)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="29.5" y2="57.5" class="arm back"/>
+      <line x1="29.5" y1="57.5" x2="35" y2="63" class="arm back"/>
+      <line x1="62" y1="52" x2="66.5" y2="57.5" class="arm"/>
+      <line x1="66.5" y1="57.5" x2="61" y2="63" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="35" cy="63" r="5.4" class="glove back"/>
+      <circle cx="61" cy="63" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 0)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="29.5" y2="58" class="arm back"/>
+      <line x1="29.5" y1="58" x2="35" y2="64" class="arm back"/>
+      <line x1="62" y1="52" x2="66.5" y2="57" class="arm"/>
+      <line x1="66.5" y1="57" x2="61" y2="62" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="30" r="11.5" class="head"/>
+      <circle cx="52" cy="29" r="1.5" class="face"/>
+      <circle cx="35" cy="64" r="5.4" class="glove back"/>
+      <circle cx="61" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 0)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="29.5" y2="58.5" class="arm back"/>
+      <line x1="29.5" y1="58.5" x2="35" y2="65" class="arm back"/>
+      <line x1="62" y1="52" x2="66.5" y2="56.5" class="arm"/>
+      <line x1="66.5" y1="56.5" x2="61" y2="61" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="32" r="11.5" class="head"/>
+      <circle cx="52" cy="31" r="1.5" class="face"/>
+      <circle cx="35" cy="65" r="5.4" class="glove back"/>
+      <circle cx="61" cy="61" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 0)">
+    <g class="fx"></g>
+    <ellipse cx="46.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="36.5" y2="97" class="leg back"/>
+      <line x1="36.5" y1="97" x2="33" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="58" y2="97" class="leg"/>
+      <line x1="58" y1="97" x2="60" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="30" y2="58" class="arm back"/>
+      <line x1="30" y1="58" x2="36" y2="64" class="arm back"/>
+      <line x1="62" y1="52" x2="66.5" y2="55" class="arm"/>
+      <line x1="66.5" y1="55" x2="61" y2="58" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="36" cy="64" r="5.4" class="glove back"/>
+      <circle cx="61" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="35" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="62" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 0)">
+    <g class="fx"></g>
+    <ellipse cx="47" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39.5" y2="97" class="leg back"/>
+      <line x1="39.5" y1="97" x2="39" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="55.5" y2="97" class="leg"/>
+      <line x1="55.5" y1="97" x2="55" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31" y2="56" class="arm back"/>
+      <line x1="31" y1="56" x2="38" y2="60" class="arm back"/>
+      <line x1="62" y1="52" x2="65" y2="58" class="arm"/>
+      <line x1="65" y1="58" x2="58" y2="64" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="38" cy="60" r="5.4" class="glove back"/>
+      <circle cx="58" cy="64" r="5.4" class="glove"/>
+      <ellipse cx="41" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="57" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 0)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="50.5" y2="97" class="leg back"/>
+      <line x1="50.5" y1="97" x2="61" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="45.5" y2="97" class="leg"/>
+      <line x1="45.5" y1="97" x2="35" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="42.5" y2="58" class="arm back"/>
+      <line x1="42.5" y1="58" x2="61" y2="64" class="arm back"/>
+      <line x1="62" y1="52" x2="54" y2="55" class="arm"/>
+      <line x1="54" y1="55" x2="36" y2="58" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="61" cy="64" r="5.4" class="glove back"/>
+      <circle cx="36" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="63" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="37" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 0)">
+    <g class="fx"></g>
+    <ellipse cx="47" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="47.5" y2="97" class="leg back"/>
+      <line x1="47.5" y1="97" x2="55" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="47.5" y2="97" class="leg"/>
+      <line x1="47.5" y1="97" x2="39" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="41" y2="56" class="arm back"/>
+      <line x1="41" y1="56" x2="58" y2="60" class="arm back"/>
+      <line x1="62" y1="52" x2="55" y2="58" class="arm"/>
+      <line x1="55" y1="58" x2="38" y2="64" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="58" cy="60" r="5.4" class="glove back"/>
+      <circle cx="38" cy="64" r="5.4" class="glove"/>
+      <ellipse cx="57" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="41" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 0)">
+    <g class="fx"></g>
+    <ellipse cx="46" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="35" y2="97" class="leg back"/>
+      <line x1="35" y1="97" x2="30" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="59" y2="95" class="leg"/>
+      <line x1="59" y1="95" x2="62" y2="109" class="leg"/>
+      <line x1="32.95" y1="52" x2="26.475" y2="55" class="arm back"/>
+      <line x1="26.475" y1="55" x2="30" y2="58" class="arm back"/>
+      <line x1="63.05" y1="52" x2="69.025" y2="59" class="arm"/>
+      <line x1="69.025" y1="59" x2="65" y2="66" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="30" cy="58" r="5.4" class="glove back"/>
+      <circle cx="65" cy="66" r="5.4" class="glove"/>
+      <ellipse cx="32" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="64" cy="111" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 128)">
+    <g class="fx"></g>
+    <ellipse cx="47.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="38.5" y2="97" class="leg back"/>
+      <line x1="38.5" y1="97" x2="37" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="32.95" y1="52" x2="28.975" y2="58" class="arm back"/>
+      <line x1="28.975" y1="58" x2="35" y2="64" class="arm back"/>
+      <line x1="63.05" y1="52" x2="67.525" y2="55" class="arm"/>
+      <line x1="67.525" y1="55" x2="62" y2="58" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="35" cy="64" r="5.4" class="glove back"/>
+      <circle cx="62" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="39" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 128)">
+    <g class="fx"></g>
+    <ellipse cx="49" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="53" y2="97" class="leg back"/>
+      <line x1="53" y1="97" x2="66" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="44" y2="95" class="leg"/>
+      <line x1="44" y1="95" x2="32" y2="109" class="leg"/>
+      <line x1="32.95" y1="52" x2="44.475" y2="55" class="arm back"/>
+      <line x1="44.475" y1="55" x2="66" y2="58" class="arm back"/>
+      <line x1="63.05" y1="52" x2="51.025" y2="59" class="arm"/>
+      <line x1="51.025" y1="59" x2="29" y2="66" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="66" cy="58" r="5.4" class="glove back"/>
+      <circle cx="29" cy="66" r="5.4" class="glove"/>
+      <ellipse cx="68" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="34" cy="111" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 128)">
+    <g class="fx"></g>
+    <ellipse cx="47.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="49" y2="97" class="leg back"/>
+      <line x1="49" y1="97" x2="58" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="46.5" y2="97" class="leg"/>
+      <line x1="46.5" y1="97" x2="37" y2="113" class="leg"/>
+      <line x1="32.95" y1="52" x2="42.475" y2="58" class="arm back"/>
+      <line x1="42.475" y1="58" x2="62" y2="64" class="arm back"/>
+      <line x1="63.05" y1="52" x2="54.025" y2="55" class="arm"/>
+      <line x1="54.025" y1="55" x2="35" y2="58" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="62" cy="64" r="5.4" class="glove back"/>
+      <circle cx="35" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="39" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 128)">
+    <g class="fx"></g>
+    <ellipse cx="47" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="34.5" y2="97" class="leg back"/>
+      <line x1="34.5" y1="97" x2="29" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="60.5" y2="94" class="leg"/>
+      <line x1="60.5" y1="94" x2="65" y2="107" class="leg"/>
+      <line x1="32.95" y1="52" x2="26.975" y2="57" class="arm back"/>
+      <line x1="26.975" y1="57" x2="31" y2="62" class="arm back"/>
+      <line x1="63.05" y1="52" x2="69.525" y2="57" class="arm"/>
+      <line x1="69.525" y1="57" x2="66" y2="62" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="31" cy="62" r="5.4" class="glove back"/>
+      <circle cx="66" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="31" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="67" cy="109" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 128)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="51.5" y2="97" class="leg back"/>
+      <line x1="51.5" y1="97" x2="63" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="44.5" y2="94" class="leg"/>
+      <line x1="44.5" y1="94" x2="33" y2="107" class="leg"/>
+      <line x1="32.95" y1="52" x2="43.975" y2="57" class="arm back"/>
+      <line x1="43.975" y1="57" x2="65" y2="62" class="arm back"/>
+      <line x1="63.05" y1="52" x2="51.525" y2="57" class="arm"/>
+      <line x1="51.525" y1="57" x2="30" y2="62" class="arm"/>
+      <polygon points="32.95,52 63.05,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="65" cy="62" r="5.4" class="glove back"/>
+      <circle cx="30" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="65" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="35" cy="109" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 128)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="76" x2="39" y2="87" class="leg back"/>
+      <line x1="39" y1="87" x2="38" y2="103" class="leg back"/>
+      <line x1="53" y1="76" x2="57" y2="87" class="leg"/>
+      <line x1="57" y1="87" x2="58" y2="103" class="leg"/>
+      <line x1="34" y1="42" x2="30" y2="44.5" class="arm back"/>
+      <line x1="30" y1="44.5" x2="36" y2="47" class="arm back"/>
+      <line x1="62" y1="42" x2="66.5" y2="41" class="arm"/>
+      <line x1="66.5" y1="41" x2="61" y2="40" class="arm"/>
+      <polygon points="34,42 62,42 59,66 37,66" class="torso"/>
+      <polygon points="37,66 59,66 54,83 42,83" class="pants"/>
+      <line x1="48" y1="34" x2="48" y2="66" class="spine hint"/>
+      <circle cx="48" cy="21" r="11.5" class="head"/>
+      <circle cx="52" cy="20" r="1.5" class="face"/>
+      <circle cx="36" cy="47" r="5.4" class="glove back"/>
+      <circle cx="61" cy="40" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="105" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="105" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 128)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="66" x2="39" y2="77" class="leg back"/>
+      <line x1="39" y1="77" x2="38" y2="93" class="leg back"/>
+      <line x1="53" y1="66" x2="57" y2="75" class="leg"/>
+      <line x1="57" y1="75" x2="58" y2="89" class="leg"/>
+      <line x1="34" y1="32" x2="30" y2="34.5" class="arm back"/>
+      <line x1="30" y1="34.5" x2="36" y2="37" class="arm back"/>
+      <line x1="62" y1="32" x2="66.5" y2="31" class="arm"/>
+      <line x1="66.5" y1="31" x2="61" y2="30" class="arm"/>
+      <polygon points="34,32 62,32 59,56 37,56" class="torso"/>
+      <polygon points="37,56 59,56 54,73 42,73" class="pants"/>
+      <line x1="48" y1="24" x2="48" y2="56" class="spine hint"/>
+      <circle cx="48" cy="11" r="11.5" class="head"/>
+      <circle cx="52" cy="10" r="1.5" class="face"/>
+      <circle cx="36" cy="37" r="5.4" class="glove back"/>
+      <circle cx="61" cy="30" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="95" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="91" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 128)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="70" x2="39" y2="81" class="leg back"/>
+      <line x1="39" y1="81" x2="38" y2="97" class="leg back"/>
+      <line x1="53" y1="70" x2="57" y2="81" class="leg"/>
+      <line x1="57" y1="81" x2="58" y2="97" class="leg"/>
+      <line x1="34" y1="36" x2="30" y2="38.5" class="arm back"/>
+      <line x1="30" y1="38.5" x2="36" y2="41" class="arm back"/>
+      <line x1="62" y1="36" x2="66.5" y2="35" class="arm"/>
+      <line x1="66.5" y1="35" x2="61" y2="34" class="arm"/>
+      <polygon points="34,36 62,36 59,60 37,60" class="torso"/>
+      <polygon points="37,60 59,60 54,77 42,77" class="pants"/>
+      <line x1="48" y1="28" x2="48" y2="60" class="spine hint"/>
+      <circle cx="48" cy="15" r="11.5" class="head"/>
+      <circle cx="52" cy="14" r="1.5" class="face"/>
+      <circle cx="36" cy="41" r="5.4" class="glove back"/>
+      <circle cx="61" cy="34" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="99" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="99" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 256)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="82" x2="39" y2="93" class="leg back"/>
+      <line x1="39" y1="93" x2="38" y2="109" class="leg back"/>
+      <line x1="53" y1="82" x2="57" y2="93" class="leg"/>
+      <line x1="57" y1="93" x2="58" y2="109" class="leg"/>
+      <line x1="34" y1="48" x2="30" y2="50.5" class="arm back"/>
+      <line x1="30" y1="50.5" x2="36" y2="53" class="arm back"/>
+      <line x1="62" y1="48" x2="66.5" y2="47" class="arm"/>
+      <line x1="66.5" y1="47" x2="61" y2="46" class="arm"/>
+      <polygon points="34,48 62,48 59,72 37,72" class="torso"/>
+      <polygon points="37,72 59,72 54,89 42,89" class="pants"/>
+      <line x1="48" y1="40" x2="48" y2="72" class="spine hint"/>
+      <circle cx="48" cy="27" r="11.5" class="head"/>
+      <circle cx="52" cy="26" r="1.5" class="face"/>
+      <circle cx="36" cy="53" r="5.4" class="glove back"/>
+      <circle cx="61" cy="46" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="111" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="111" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 256)">
+    <g class="fx"><path d="M18 78 C30 72 35 70 42 69" class="dash-fx"/></g>
+    <ellipse cx="29.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="36" y1="83" x2="26" y2="88.5" class="leg back"/>
+      <line x1="26" y1="88.5" x2="19" y2="99" class="leg back"/>
+      <line x1="46" y1="83" x2="44.5" y2="95.5" class="leg"/>
+      <line x1="44.5" y1="95.5" x2="40" y2="113" class="leg"/>
+      <line x1="34.75" y1="54" x2="50.375" y2="54" class="arm back"/>
+      <line x1="50.375" y1="54" x2="76" y2="54" class="arm back"/>
+      <line x1="67.25" y1="54" x2="73.625" y2="61" class="arm"/>
+      <line x1="73.625" y1="61" x2="70" y2="68" class="arm"/>
+      <polygon points="34.75,54 67.25,54 52,73 30,73" class="torso"/>
+      <polygon points="30,73 52,73 47,90 35,90" class="pants"/>
+      <line x1="51" y1="46" x2="41" y2="73" class="spine hint"/>
+      <circle cx="56" cy="33" r="11.5" class="head"/>
+      <circle cx="60" cy="32" r="1.5" class="face"/>
+      <circle cx="76" cy="54" r="5.4" class="glove back"/>
+      <circle cx="70" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="21" cy="101" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="42" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 256)">
+    <g class="fx"><path d="M18 78 C30 72 35 70 42 69" class="dash-fx"/></g>
+    <ellipse cx="32.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="39" y1="83" x2="29" y2="88.5" class="leg back"/>
+      <line x1="29" y1="88.5" x2="22" y2="99" class="leg back"/>
+      <line x1="49" y1="83" x2="47.5" y2="95.5" class="leg"/>
+      <line x1="47.5" y1="95.5" x2="43" y2="113" class="leg"/>
+      <line x1="37.75" y1="54" x2="53.375" y2="54" class="arm back"/>
+      <line x1="53.375" y1="54" x2="79" y2="54" class="arm back"/>
+      <line x1="70.25" y1="54" x2="76.625" y2="61" class="arm"/>
+      <line x1="76.625" y1="61" x2="73" y2="68" class="arm"/>
+      <polygon points="37.75,54 70.25,54 55,73 33,73" class="torso"/>
+      <polygon points="33,73 55,73 50,90 38,90" class="pants"/>
+      <line x1="54" y1="46" x2="44" y2="73" class="spine hint"/>
+      <circle cx="59" cy="33" r="11.5" class="head"/>
+      <circle cx="63" cy="32" r="1.5" class="face"/>
+      <circle cx="79" cy="54" r="5.4" class="glove back"/>
+      <circle cx="73" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="24" cy="101" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="45" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 256)">
+    <g class="fx"><path d="M18 78 C30 72 35 70 42 69" class="dash-fx"/></g>
+    <ellipse cx="35.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="42" y1="83" x2="32" y2="88.5" class="leg back"/>
+      <line x1="32" y1="88.5" x2="25" y2="99" class="leg back"/>
+      <line x1="52" y1="83" x2="50.5" y2="95.5" class="leg"/>
+      <line x1="50.5" y1="95.5" x2="46" y2="113" class="leg"/>
+      <line x1="40.75" y1="54" x2="56.375" y2="54" class="arm back"/>
+      <line x1="56.375" y1="54" x2="82" y2="54" class="arm back"/>
+      <line x1="73.25" y1="54" x2="79.625" y2="61" class="arm"/>
+      <line x1="79.625" y1="61" x2="76" y2="68" class="arm"/>
+      <polygon points="40.75,54 73.25,54 58,73 36,73" class="torso"/>
+      <polygon points="36,73 58,73 53,90 41,90" class="pants"/>
+      <line x1="57" y1="46" x2="47" y2="73" class="spine hint"/>
+      <circle cx="62" cy="33" r="11.5" class="head"/>
+      <circle cx="66" cy="32" r="1.5" class="face"/>
+      <circle cx="82" cy="54" r="5.4" class="glove back"/>
+      <circle cx="76" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="27" cy="101" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="48" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 256)">
+    <g class="fx"><path d="M18 78 C30 72 35 70 42 69" class="dash-fx"/></g>
+    <ellipse cx="38.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="45" y1="83" x2="35" y2="88.5" class="leg back"/>
+      <line x1="35" y1="88.5" x2="28" y2="99" class="leg back"/>
+      <line x1="55" y1="83" x2="53.5" y2="95.5" class="leg"/>
+      <line x1="53.5" y1="95.5" x2="49" y2="113" class="leg"/>
+      <line x1="43.75" y1="54" x2="59.375" y2="54" class="arm back"/>
+      <line x1="59.375" y1="54" x2="85" y2="54" class="arm back"/>
+      <line x1="76.25" y1="54" x2="82.625" y2="61" class="arm"/>
+      <line x1="82.625" y1="61" x2="79" y2="68" class="arm"/>
+      <polygon points="43.75,54 76.25,54 61,73 39,73" class="torso"/>
+      <polygon points="39,73 61,73 56,90 44,90" class="pants"/>
+      <line x1="60" y1="46" x2="50" y2="73" class="spine hint"/>
+      <circle cx="65" cy="33" r="11.5" class="head"/>
+      <circle cx="69" cy="32" r="1.5" class="face"/>
+      <circle cx="85" cy="54" r="5.4" class="glove back"/>
+      <circle cx="79" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="30" cy="101" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="51" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 256)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="29.5" y2="57.5" class="arm back"/>
+      <line x1="29.5" y1="57.5" x2="35" y2="63" class="arm back"/>
+      <line x1="62" y1="52" x2="64" y2="60" class="arm"/>
+      <line x1="64" y1="60" x2="56" y2="68" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="35" cy="63" r="5.4" class="glove back"/>
+      <circle cx="56" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 256)">
+    <g class="fx"><path d="M75 55 L88 51" class="hit-fx"/></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="49.5" y2="53.5" class="arm back"/>
+      <line x1="49.5" y1="53.5" x2="75" y2="55" class="arm back"/>
+      <line x1="62" y1="52" x2="64" y2="60" class="arm"/>
+      <line x1="64" y1="60" x2="56" y2="68" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="75" cy="55" r="5.4" class="glove back"/>
+      <circle cx="56" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 256)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="33.5" y2="57.5" class="arm back"/>
+      <line x1="33.5" y1="57.5" x2="43" y2="63" class="arm back"/>
+      <line x1="62" y1="52" x2="64" y2="60" class="arm"/>
+      <line x1="64" y1="60" x2="56" y2="68" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="43" cy="63" r="5.4" class="glove back"/>
+      <circle cx="56" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 384)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="30.5" y2="59.5" class="arm back"/>
+      <line x1="30.5" y1="59.5" x2="37" y2="67" class="arm back"/>
+      <line x1="62" y1="52" x2="66" y2="57" class="arm"/>
+      <line x1="66" y1="57" x2="60" y2="62" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="37" cy="67" r="5.4" class="glove back"/>
+      <circle cx="60" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 384)">
+    <g class="fx"><path d="M84 57 L93 52" class="hit-fx"/></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="30.5" y2="59.5" class="arm back"/>
+      <line x1="30.5" y1="59.5" x2="37" y2="67" class="arm back"/>
+      <line x1="62" y1="52" x2="78" y2="54.5" class="arm"/>
+      <line x1="78" y1="54.5" x2="84" y2="57" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="37" cy="67" r="5.4" class="glove back"/>
+      <circle cx="84" cy="57" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 384)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="30.5" y2="59.5" class="arm back"/>
+      <line x1="30.5" y1="59.5" x2="37" y2="67" class="arm back"/>
+      <line x1="62" y1="52" x2="65.5" y2="58" class="arm"/>
+      <line x1="65.5" y1="58" x2="59" y2="64" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="37" cy="67" r="5.4" class="glove back"/>
+      <circle cx="59" cy="64" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 384)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31" y2="57" class="arm back"/>
+      <line x1="31" y1="57" x2="38" y2="62" class="arm back"/>
+      <line x1="62" y1="52" x2="66" y2="56" class="arm"/>
+      <line x1="66" y1="56" x2="60" y2="60" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="38" cy="62" r="5.4" class="glove back"/>
+      <circle cx="60" cy="60" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 384)">
+    <g class="fx"></g>
+    <ellipse cx="51" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="41" y2="97" class="leg back"/>
+      <line x1="41" y1="97" x2="42" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="58" y2="95" class="leg"/>
+      <line x1="58" y1="95" x2="60" y2="109" class="leg"/>
+      <line x1="34" y1="52" x2="29.5" y2="56" class="arm back"/>
+      <line x1="29.5" y1="56" x2="35" y2="60" class="arm back"/>
+      <line x1="62" y1="52" x2="70" y2="55" class="arm"/>
+      <line x1="70" y1="55" x2="68" y2="58" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="35" cy="60" r="5.4" class="glove back"/>
+      <circle cx="68" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="44" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="62" cy="111" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 384)">
+    <g class="fx"><path d="M66 77 C78 66 88 65 94 72" class="kick-fx"/></g>
+    <ellipse cx="64" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="42.5" y2="95" class="leg back"/>
+      <line x1="42.5" y1="95" x2="45" y2="109" class="leg back"/>
+      <line x1="53" y1="86" x2="69.5" y2="78.5" class="leg"/>
+      <line x1="69.5" y1="78.5" x2="83" y2="76" class="leg"/>
+      <line x1="34" y1="52" x2="29" y2="59" class="arm back"/>
+      <line x1="29" y1="59" x2="34" y2="66" class="arm back"/>
+      <line x1="62" y1="52" x2="67.5" y2="54" class="arm"/>
+      <line x1="67.5" y1="54" x2="63" y2="56" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="34" cy="66" r="5.4" class="glove back"/>
+      <circle cx="63" cy="56" r="5.4" class="glove"/>
+      <ellipse cx="47" cy="111" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="85" cy="78" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 384)">
+    <g class="fx"><path d="M66 77 C78 66 88 65 94 72" class="kick-fx"/></g>
+    <ellipse cx="70" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="47" y2="95.5" class="leg back"/>
+      <line x1="47" y1="95.5" x2="54" y2="110" class="leg back"/>
+      <line x1="53" y1="86" x2="71" y2="74.5" class="leg"/>
+      <line x1="71" y1="74.5" x2="86" y2="68" class="leg"/>
+      <line x1="34" y1="52" x2="27.5" y2="58.5" class="arm back"/>
+      <line x1="27.5" y1="58.5" x2="31" y2="65" class="arm back"/>
+      <line x1="62" y1="52" x2="66" y2="55" class="arm"/>
+      <line x1="66" y1="55" x2="60" y2="58" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="31" cy="65" r="5.4" class="glove back"/>
+      <circle cx="60" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="56" cy="112" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="88" cy="70" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 384)">
+    <g class="fx"></g>
+    <ellipse cx="51" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39.5" y2="97" class="leg back"/>
+      <line x1="39.5" y1="97" x2="39" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="59.5" y2="97" class="leg"/>
+      <line x1="59.5" y1="97" x2="63" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31" y2="58" class="arm back"/>
+      <line x1="31" y1="58" x2="38" y2="64" class="arm back"/>
+      <line x1="62" y1="52" x2="67" y2="58" class="arm"/>
+      <line x1="67" y1="58" x2="62" y2="64" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="38" cy="64" r="5.4" class="glove back"/>
+      <circle cx="62" cy="64" r="5.4" class="glove"/>
+      <ellipse cx="41" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="65" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 512)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31.5" y2="59" class="arm back"/>
+      <line x1="31.5" y1="59" x2="39" y2="66" class="arm back"/>
+      <line x1="62" y1="52" x2="66" y2="59" class="arm"/>
+      <line x1="66" y1="59" x2="60" y2="66" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="39" cy="66" r="5.4" class="glove back"/>
+      <circle cx="60" cy="66" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 512)">
+    <g class="fx"></g>
+    <ellipse cx="50.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="39" y1="82" x2="35.5" y2="85" class="leg back"/>
+      <line x1="35.5" y1="85" x2="35" y2="93" class="leg back"/>
+      <line x1="49" y1="82" x2="59" y2="88.5" class="leg"/>
+      <line x1="59" y1="88.5" x2="66" y2="100" class="leg"/>
+      <line x1="38" y1="55" x2="31.5" y2="57" class="arm back"/>
+      <line x1="31.5" y1="57" x2="35" y2="59" class="arm back"/>
+      <line x1="66" y1="55" x2="69" y2="58.5" class="arm"/>
+      <line x1="69" y1="58.5" x2="62" y2="62" class="arm"/>
+      <polygon points="38,55 66,55 55,72 33,72" class="torso"/>
+      <polygon points="33,72 55,72 50,89 38,89" class="pants"/>
+      <line x1="52" y1="47" x2="44" y2="72" class="spine hint"/>
+      <circle cx="52" cy="34" r="11.5" class="head"/>
+      <circle cx="56" cy="33" r="1.5" class="face"/>
+      <circle cx="35" cy="59" r="5.4" class="glove back"/>
+      <circle cx="62" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="95" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="68" cy="102" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 512)">
+    <g class="fx"><path d="M83 57 L94 52" class="hit-fx"/></g>
+    <ellipse cx="50.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="39" y1="82" x2="35.5" y2="85" class="leg back"/>
+      <line x1="35.5" y1="85" x2="35" y2="93" class="leg back"/>
+      <line x1="49" y1="82" x2="59" y2="88.5" class="leg"/>
+      <line x1="59" y1="88.5" x2="66" y2="100" class="leg"/>
+      <line x1="38" y1="55" x2="46" y2="54" class="arm back"/>
+      <line x1="46" y1="54" x2="64" y2="53" class="arm back"/>
+      <line x1="66" y1="55" x2="80" y2="56" class="arm"/>
+      <line x1="80" y1="56" x2="84" y2="57" class="arm"/>
+      <polygon points="38,55 66,55 55,72 33,72" class="torso"/>
+      <polygon points="33,72 55,72 50,89 38,89" class="pants"/>
+      <line x1="52" y1="47" x2="44" y2="72" class="spine hint"/>
+      <circle cx="52" cy="34" r="11.5" class="head"/>
+      <circle cx="56" cy="33" r="1.5" class="face"/>
+      <circle cx="64" cy="53" r="5.4" class="glove back"/>
+      <circle cx="84" cy="57" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="95" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="68" cy="102" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 512)">
+    <g class="fx"></g>
+    <ellipse cx="50.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="39" y1="82" x2="35.5" y2="85" class="leg back"/>
+      <line x1="35.5" y1="85" x2="35" y2="93" class="leg back"/>
+      <line x1="49" y1="82" x2="59" y2="88.5" class="leg"/>
+      <line x1="59" y1="88.5" x2="66" y2="100" class="leg"/>
+      <line x1="38" y1="55" x2="40" y2="58" class="arm back"/>
+      <line x1="40" y1="58" x2="52" y2="61" class="arm back"/>
+      <line x1="66" y1="55" x2="69.5" y2="59" class="arm"/>
+      <line x1="69.5" y1="59" x2="63" y2="63" class="arm"/>
+      <polygon points="38,55 66,55 55,72 33,72" class="torso"/>
+      <polygon points="33,72 55,72 50,89 38,89" class="pants"/>
+      <line x1="52" y1="47" x2="44" y2="72" class="spine hint"/>
+      <circle cx="52" cy="34" r="11.5" class="head"/>
+      <circle cx="56" cy="33" r="1.5" class="face"/>
+      <circle cx="52" cy="61" r="5.4" class="glove back"/>
+      <circle cx="63" cy="63" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="95" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="68" cy="102" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 512)">
+    <g class="fx"></g>
+    <ellipse cx="47.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="38" y1="83" x2="36" y2="84.5" class="leg back"/>
+      <line x1="36" y1="84.5" x2="37" y2="91" class="leg back"/>
+      <line x1="48" y1="83" x2="54.5" y2="90.5" class="leg"/>
+      <line x1="54.5" y1="90.5" x2="58" y2="103" class="leg"/>
+      <line x1="35" y1="54" x2="31" y2="56.5" class="arm back"/>
+      <line x1="31" y1="56.5" x2="37" y2="59" class="arm back"/>
+      <line x1="63" y1="54" x2="69.5" y2="54.5" class="arm"/>
+      <line x1="69.5" y1="54.5" x2="66" y2="55" class="arm"/>
+      <polygon points="35,54 63,54 54,73 32,73" class="torso"/>
+      <polygon points="32,73 54,73 49,90 37,90" class="pants"/>
+      <line x1="49" y1="46" x2="43" y2="73" class="spine hint"/>
+      <circle cx="54" cy="33" r="11.5" class="head"/>
+      <circle cx="58" cy="32" r="1.5" class="face"/>
+      <circle cx="37" cy="59" r="5.4" class="glove back"/>
+      <circle cx="66" cy="55" r="5.4" class="glove"/>
+      <ellipse cx="39" cy="93" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="105" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 512)">
+    <g class="fx"><path d="M72 78 C83 64 91 62 96 66" class="kick-fx"/></g>
+    <ellipse cx="54.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="40" y1="83" x2="34" y2="81.5" class="leg back"/>
+      <line x1="34" y1="81.5" x2="31" y2="85" class="leg back"/>
+      <line x1="50" y1="83" x2="65.5" y2="79" class="leg"/>
+      <line x1="65.5" y1="79" x2="78" y2="80" class="leg"/>
+      <line x1="37" y1="54" x2="29.5" y2="58" class="arm back"/>
+      <line x1="29.5" y1="58" x2="32" y2="62" class="arm back"/>
+      <line x1="65" y1="54" x2="73" y2="54.5" class="arm"/>
+      <line x1="73" y1="54.5" x2="71" y2="55" class="arm"/>
+      <polygon points="37,54 65,54 56,73 34,73" class="torso"/>
+      <polygon points="34,73 56,73 51,90 39,90" class="pants"/>
+      <line x1="51" y1="46" x2="45" y2="73" class="spine hint"/>
+      <circle cx="56" cy="33" r="11.5" class="head"/>
+      <circle cx="60" cy="32" r="1.5" class="face"/>
+      <circle cx="32" cy="62" r="5.4" class="glove back"/>
+      <circle cx="71" cy="55" r="5.4" class="glove"/>
+      <ellipse cx="33" cy="87" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="80" cy="82" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 512)">
+    <g class="fx"><path d="M72 78 C83 64 91 62 96 66" class="kick-fx"/></g>
+    <ellipse cx="58" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="42" y1="83" x2="33.5" y2="79.5" class="leg back"/>
+      <line x1="33.5" y1="79.5" x2="28" y2="81" class="leg back"/>
+      <line x1="52" y1="83" x2="71.5" y2="72.5" class="leg"/>
+      <line x1="71.5" y1="72.5" x2="88" y2="67" class="leg"/>
+      <line x1="39" y1="54" x2="32" y2="60" class="arm back"/>
+      <line x1="32" y1="60" x2="35" y2="66" class="arm back"/>
+      <line x1="67" y1="54" x2="73" y2="56" class="arm"/>
+      <line x1="73" y1="56" x2="69" y2="58" class="arm"/>
+      <polygon points="39,54 67,54 58,73 36,73" class="torso"/>
+      <polygon points="36,73 58,73 53,90 41,90" class="pants"/>
+      <line x1="53" y1="46" x2="47" y2="73" class="spine hint"/>
+      <circle cx="58" cy="33" r="11.5" class="head"/>
+      <circle cx="62" cy="32" r="1.5" class="face"/>
+      <circle cx="35" cy="66" r="5.4" class="glove back"/>
+      <circle cx="69" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="30" cy="83" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="90" cy="69" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 512)">
+    <g class="fx"><path d="M76 93 C88 93 94 98 98 106" class="over-fx"/></g>
+    <ellipse cx="57.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="44" y1="83" x2="32.5" y2="82.5" class="leg back"/>
+      <line x1="32.5" y1="82.5" x2="24" y2="87" class="leg back"/>
+      <line x1="54" y1="83" x2="74" y2="76.5" class="leg"/>
+      <line x1="74" y1="76.5" x2="91" y2="75" class="leg"/>
+      <line x1="41" y1="54" x2="31" y2="60.5" class="arm back"/>
+      <line x1="31" y1="60.5" x2="31" y2="67" class="arm back"/>
+      <line x1="69" y1="54" x2="72.5" y2="58" class="arm"/>
+      <line x1="72.5" y1="58" x2="66" y2="62" class="arm"/>
+      <polygon points="41,54 69,54 60,73 38,73" class="torso"/>
+      <polygon points="38,73 60,73 55,90 43,90" class="pants"/>
+      <line x1="55" y1="46" x2="49" y2="73" class="spine hint"/>
+      <circle cx="60" cy="33" r="11.5" class="head"/>
+      <circle cx="64" cy="32" r="1.5" class="face"/>
+      <circle cx="31" cy="67" r="5.4" class="glove back"/>
+      <circle cx="66" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="26" cy="89" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="93" cy="77" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 640)">
+    <g class="fx"><path d="M76 93 C88 93 94 98 98 106" class="over-fx"/></g>
+    <ellipse cx="51.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="44" y1="90" x2="36" y2="91.5" class="leg back"/>
+      <line x1="36" y1="91.5" x2="31" y2="98" class="leg back"/>
+      <line x1="54" y1="90" x2="64.5" y2="96.5" class="leg"/>
+      <line x1="64.5" y1="96.5" x2="72" y2="108" class="leg"/>
+      <line x1="41" y1="58" x2="30" y2="62" class="arm back"/>
+      <line x1="30" y1="62" x2="29" y2="66" class="arm back"/>
+      <line x1="69" y1="58" x2="71.5" y2="63" class="arm"/>
+      <line x1="71.5" y1="63" x2="64" y2="68" class="arm"/>
+      <polygon points="41,58 69,58 60,80 38,80" class="torso"/>
+      <polygon points="38,80 60,80 55,97 43,97" class="pants"/>
+      <line x1="55" y1="50" x2="49" y2="80" class="spine hint"/>
+      <circle cx="60" cy="36" r="11.5" class="head"/>
+      <circle cx="64" cy="35" r="1.5" class="face"/>
+      <circle cx="29" cy="66" r="5.4" class="glove back"/>
+      <circle cx="64" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="33" cy="100" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="74" cy="110" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 640)">
+    <g class="fx"></g>
+    <ellipse cx="50" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="44" y1="97" x2="39.5" y2="101.5" class="leg back"/>
+      <line x1="39.5" y1="101.5" x2="38" y2="111" class="leg back"/>
+      <line x1="54" y1="97" x2="59.5" y2="102.5" class="leg"/>
+      <line x1="59.5" y1="102.5" x2="62" y2="113" class="leg"/>
+      <line x1="41" y1="62" x2="33.5" y2="63.5" class="arm back"/>
+      <line x1="33.5" y1="63.5" x2="36" y2="65" class="arm back"/>
+      <line x1="69" y1="62" x2="70" y2="64" class="arm"/>
+      <line x1="70" y1="64" x2="61" y2="66" class="arm"/>
+      <polygon points="41,62 69,62 60,87 38,87" class="torso"/>
+      <polygon points="38,87 60,87 55,104 43,104" class="pants"/>
+      <line x1="55" y1="54" x2="49" y2="87" class="spine hint"/>
+      <circle cx="60" cy="39" r="11.5" class="head"/>
+      <circle cx="64" cy="38" r="1.5" class="face"/>
+      <circle cx="36" cy="65" r="5.4" class="glove back"/>
+      <circle cx="61" cy="66" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="113" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="64" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 640)">
+    <g class="fx"></g>
+    <ellipse cx="48.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="37.5" y2="97" class="leg back"/>
+      <line x1="37.5" y1="97" x2="35" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="59" y2="95" class="leg"/>
+      <line x1="59" y1="95" x2="62" y2="109" class="leg"/>
+      <line x1="32.5" y1="52" x2="27.25" y2="56" class="arm back"/>
+      <line x1="27.25" y1="56" x2="32" y2="60" class="arm back"/>
+      <line x1="63.5" y1="52" x2="69.75" y2="58.5" class="arm"/>
+      <line x1="69.75" y1="58.5" x2="66" y2="65" class="arm"/>
+      <polygon points="32.5,52 63.5,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="32" cy="60" r="5.4" class="glove back"/>
+      <circle cx="66" cy="65" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="64" cy="111" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 640)">
+    <g class="fx"><path d="M74 91 C84 82 91 81 97 87" class="kick-fx"/></g>
+    <ellipse cx="59.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="37.5" y2="95" class="leg back"/>
+      <line x1="37.5" y1="95" x2="35" y2="109" class="leg back"/>
+      <line x1="53" y1="86" x2="70" y2="84" class="leg"/>
+      <line x1="70" y1="84" x2="84" y2="87" class="leg"/>
+      <line x1="32.5" y1="52" x2="28.25" y2="57.5" class="arm back"/>
+      <line x1="28.25" y1="57.5" x2="34" y2="63" class="arm back"/>
+      <line x1="63.5" y1="52" x2="69.75" y2="55" class="arm"/>
+      <line x1="69.75" y1="55" x2="66" y2="58" class="arm"/>
+      <polygon points="32.5,52 63.5,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="34" cy="63" r="5.4" class="glove back"/>
+      <circle cx="66" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="111" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="86" cy="89" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 640)">
+    <g class="fx"><path d="M74 91 C84 82 91 81 97 87" class="kick-fx"/></g>
+    <ellipse cx="65.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="40.5" y2="96" class="leg back"/>
+      <line x1="40.5" y1="96" x2="41" y2="111" class="leg back"/>
+      <line x1="53" y1="86" x2="73" y2="82" class="leg"/>
+      <line x1="73" y1="82" x2="90" y2="83" class="leg"/>
+      <line x1="32.5" y1="52" x2="29.25" y2="58" class="arm back"/>
+      <line x1="29.25" y1="58" x2="36" y2="64" class="arm back"/>
+      <line x1="63.5" y1="52" x2="70.25" y2="57" class="arm"/>
+      <line x1="70.25" y1="57" x2="67" y2="62" class="arm"/>
+      <polygon points="32.5,52 63.5,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="36" cy="64" r="5.4" class="glove back"/>
+      <circle cx="67" cy="62" r="5.4" class="glove"/>
+      <ellipse cx="43" cy="113" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="92" cy="85" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 640)">
+    <g class="fx"></g>
+    <ellipse cx="54" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="41.5" y2="97" class="leg back"/>
+      <line x1="41.5" y1="97" x2="43" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="60.5" y2="97" class="leg"/>
+      <line x1="60.5" y1="97" x2="65" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31.5" y2="59.5" class="arm back"/>
+      <line x1="31.5" y1="59.5" x2="39" y2="67" class="arm back"/>
+      <line x1="62" y1="52" x2="66.5" y2="59.5" class="arm"/>
+      <line x1="66.5" y1="59.5" x2="61" y2="67" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="39" cy="67" r="5.4" class="glove back"/>
+      <circle cx="61" cy="67" r="5.4" class="glove"/>
+      <ellipse cx="45" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="67" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 640)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="33" y2="56.5" class="arm back"/>
+      <line x1="33" y1="56.5" x2="42" y2="61" class="arm back"/>
+      <line x1="62" y1="52" x2="65.5" y2="56.5" class="arm"/>
+      <line x1="65.5" y1="56.5" x2="59" y2="61" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="42" cy="61" r="5.4" class="glove back"/>
+      <circle cx="59" cy="61" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 640)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="37" y2="55" class="arm back"/>
+      <line x1="37" y1="55" x2="50" y2="58" class="arm back"/>
+      <line x1="62" y1="52" x2="58.5" y2="58.5" class="arm"/>
+      <line x1="58.5" y1="58.5" x2="45" y2="65" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="50" cy="58" r="5.4" class="glove back"/>
+      <circle cx="45" cy="65" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 768)">
+    <g class="fx"><path d="M61 53 L78 47 M63 64 L80 68" class="block-fx"/></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="42" y1="86" x2="38.5" y2="97" class="leg back"/>
+      <line x1="38.5" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="52" y1="86" x2="56.5" y2="97" class="leg"/>
+      <line x1="56.5" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="32" y1="52" x2="36" y2="55" class="arm back"/>
+      <line x1="36" y1="55" x2="50" y2="58" class="arm back"/>
+      <line x1="60" y1="52" x2="57.5" y2="58.5" class="arm"/>
+      <line x1="57.5" y1="58.5" x2="45" y2="65" class="arm"/>
+      <polygon points="32,52 60,52 58,76 36,76" class="torso"/>
+      <polygon points="36,76 58,76 53,93 41,93" class="pants"/>
+      <line x1="46" y1="44" x2="47" y2="76" class="spine hint"/>
+      <circle cx="46" cy="31" r="11.5" class="head"/>
+      <circle cx="50" cy="30" r="1.5" class="face"/>
+      <circle cx="50" cy="58" r="5.4" class="glove back"/>
+      <circle cx="45" cy="65" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 768)">
+    <g class="fx"><path d="M61 53 L78 47 M63 64 L80 68" class="block-fx"/></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="40" y1="86" x2="37.5" y2="97" class="leg back"/>
+      <line x1="37.5" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="50" y1="86" x2="55.5" y2="97" class="leg"/>
+      <line x1="55.5" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="30" y1="52" x2="34" y2="55" class="arm back"/>
+      <line x1="34" y1="55" x2="48" y2="58" class="arm back"/>
+      <line x1="58" y1="52" x2="55.5" y2="58.5" class="arm"/>
+      <line x1="55.5" y1="58.5" x2="43" y2="65" class="arm"/>
+      <polygon points="30,52 58,52 56,76 34,76" class="torso"/>
+      <polygon points="34,76 56,76 51,93 39,93" class="pants"/>
+      <line x1="44" y1="44" x2="45" y2="76" class="spine hint"/>
+      <circle cx="44" cy="31" r="11.5" class="head"/>
+      <circle cx="48" cy="30" r="1.5" class="face"/>
+      <circle cx="48" cy="58" r="5.4" class="glove back"/>
+      <circle cx="43" cy="65" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 768)">
+    <g class="fx"><path d="M39 50 L33 42 M56 48 L62 40" class="break-fx"/></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="34" y1="52" x2="31.5" y2="55" class="arm back"/>
+      <line x1="31.5" y1="55" x2="39" y2="58" class="arm back"/>
+      <line x1="62" y1="52" x2="65" y2="55" class="arm"/>
+      <line x1="65" y1="55" x2="58" y2="58" class="arm"/>
+      <polygon points="34,52 62,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="48" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="48" cy="31" r="11.5" class="head"/>
+      <circle cx="52" cy="30" r="1.5" class="face"/>
+      <circle cx="39" cy="58" r="5.4" class="glove back"/>
+      <circle cx="58" cy="58" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 768)">
+    <g class="fx"><path d="M39 50 L33 42 M56 48 L62 40" class="break-fx"/></g>
+    <ellipse cx="44" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="39" y1="88" x2="35" y2="98" class="leg back"/>
+      <line x1="35" y1="98" x2="34" y2="113" class="leg back"/>
+      <line x1="49" y1="88" x2="53" y2="98" class="leg"/>
+      <line x1="53" y1="98" x2="54" y2="113" class="leg"/>
+      <line x1="30" y1="54" x2="27.5" y2="58.5" class="arm back"/>
+      <line x1="27.5" y1="58.5" x2="35" y2="63" class="arm back"/>
+      <line x1="58" y1="54" x2="61" y2="58.5" class="arm"/>
+      <line x1="61" y1="58.5" x2="54" y2="63" class="arm"/>
+      <polygon points="30,54 58,54 55,78 33,78" class="torso"/>
+      <polygon points="33,78 55,78 50,95 38,95" class="pants"/>
+      <line x1="44" y1="46" x2="44" y2="78" class="spine hint"/>
+      <circle cx="44" cy="32" r="11.5" class="head"/>
+      <circle cx="48" cy="31" r="1.5" class="face"/>
+      <circle cx="35" cy="63" r="5.4" class="glove back"/>
+      <circle cx="54" cy="63" r="5.4" class="glove"/>
+      <ellipse cx="36" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="56" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 768)">
+    <g class="fx"><path d="M39 50 L33 42 M56 48 L62 40" class="break-fx"/></g>
+    <ellipse cx="40" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="35" y1="90" x2="31" y2="99" class="leg back"/>
+      <line x1="31" y1="99" x2="30" y2="113" class="leg back"/>
+      <line x1="45" y1="90" x2="49" y2="99" class="leg"/>
+      <line x1="49" y1="99" x2="50" y2="113" class="leg"/>
+      <line x1="26" y1="56" x2="23.5" y2="62" class="arm back"/>
+      <line x1="23.5" y1="62" x2="31" y2="68" class="arm back"/>
+      <line x1="54" y1="56" x2="57" y2="62" class="arm"/>
+      <line x1="57" y1="62" x2="50" y2="68" class="arm"/>
+      <polygon points="26,56 54,56 51,80 29,80" class="torso"/>
+      <polygon points="29,80 51,80 46,97 34,97" class="pants"/>
+      <line x1="40" y1="48" x2="40" y2="80" class="spine hint"/>
+      <circle cx="40" cy="33" r="11.5" class="head"/>
+      <circle cx="44" cy="32" r="1.5" class="face"/>
+      <circle cx="31" cy="68" r="5.4" class="glove back"/>
+      <circle cx="50" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="32" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="52" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 768)">
+    <g class="fx"><path d="M39 50 L33 42 M56 48 L62 40" class="break-fx"/></g>
+    <ellipse cx="36" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="31" y1="92" x2="27" y2="100" class="leg back"/>
+      <line x1="27" y1="100" x2="26" y2="113" class="leg back"/>
+      <line x1="41" y1="92" x2="45" y2="100" class="leg"/>
+      <line x1="45" y1="100" x2="46" y2="113" class="leg"/>
+      <line x1="22" y1="58" x2="19.5" y2="65.5" class="arm back"/>
+      <line x1="19.5" y1="65.5" x2="27" y2="73" class="arm back"/>
+      <line x1="50" y1="58" x2="53" y2="65.5" class="arm"/>
+      <line x1="53" y1="65.5" x2="46" y2="73" class="arm"/>
+      <polygon points="22,58 50,58 47,82 25,82" class="torso"/>
+      <polygon points="25,82 47,82 42,99 30,99" class="pants"/>
+      <line x1="36" y1="50" x2="36" y2="82" class="spine hint"/>
+      <circle cx="36" cy="34" r="11.5" class="head"/>
+      <circle cx="40" cy="33" r="1.5" class="face"/>
+      <circle cx="27" cy="73" r="5.4" class="glove back"/>
+      <circle cx="46" cy="73" r="5.4" class="glove"/>
+      <ellipse cx="28" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="48" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 768)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="43" y1="86" x2="39" y2="97" class="leg back"/>
+      <line x1="39" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="53" y1="86" x2="57" y2="97" class="leg"/>
+      <line x1="57" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="32" y1="52" x2="28" y2="58.5" class="arm back"/>
+      <line x1="28" y1="58.5" x2="34" y2="65" class="arm back"/>
+      <line x1="60" y1="52" x2="65" y2="59.5" class="arm"/>
+      <line x1="65" y1="59.5" x2="60" y2="67" class="arm"/>
+      <polygon points="32,52 60,52 59,76 37,76" class="torso"/>
+      <polygon points="37,76 59,76 54,93 42,93" class="pants"/>
+      <line x1="46" y1="44" x2="48" y2="76" class="spine hint"/>
+      <circle cx="45" cy="31" r="11.5" class="head"/>
+      <circle cx="49" cy="30" r="1.5" class="face"/>
+      <circle cx="34" cy="65" r="5.4" class="glove back"/>
+      <circle cx="60" cy="67" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 768)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="41" y1="86" x2="38" y2="97" class="leg back"/>
+      <line x1="38" y1="97" x2="38" y2="113" class="leg back"/>
+      <line x1="51" y1="86" x2="56" y2="97" class="leg"/>
+      <line x1="56" y1="97" x2="58" y2="113" class="leg"/>
+      <line x1="29" y1="53" x2="24.5" y2="59" class="arm back"/>
+      <line x1="24.5" y1="59" x2="30" y2="65" class="arm back"/>
+      <line x1="57" y1="53" x2="62" y2="60" class="arm"/>
+      <line x1="62" y1="60" x2="57" y2="67" class="arm"/>
+      <polygon points="29,53 57,53 57,76 35,76" class="torso"/>
+      <polygon points="35,76 57,76 52,93 40,93" class="pants"/>
+      <line x1="43" y1="45" x2="46" y2="76" class="spine hint"/>
+      <circle cx="42" cy="32" r="11.5" class="head"/>
+      <circle cx="46" cy="31" r="1.5" class="face"/>
+      <circle cx="30" cy="65" r="5.4" class="glove back"/>
+      <circle cx="57" cy="67" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(0 896)">
+    <g class="fx"></g>
+    <ellipse cx="48" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="44" y1="87" x2="39.5" y2="97.5" class="leg back"/>
+      <line x1="39.5" y1="97.5" x2="38" y2="113" class="leg back"/>
+      <line x1="54" y1="87" x2="57.5" y2="97.5" class="leg"/>
+      <line x1="57.5" y1="97.5" x2="58" y2="113" class="leg"/>
+      <line x1="31" y1="53" x2="26" y2="58.5" class="arm back"/>
+      <line x1="26" y1="58.5" x2="31" y2="64" class="arm back"/>
+      <line x1="59" y1="53" x2="66" y2="59" class="arm"/>
+      <line x1="66" y1="59" x2="63" y2="65" class="arm"/>
+      <polygon points="31,53 59,53 60,77 38,77" class="torso"/>
+      <polygon points="38,77 60,77 55,94 43,94" class="pants"/>
+      <line x1="45" y1="45" x2="49" y2="77" class="spine hint"/>
+      <circle cx="43" cy="31" r="11.5" class="head"/>
+      <circle cx="47" cy="30" r="1.5" class="face"/>
+      <circle cx="31" cy="64" r="5.4" class="glove back"/>
+      <circle cx="63" cy="65" r="5.4" class="glove"/>
+      <ellipse cx="40" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="60" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(96 896)">
+    <g class="fx"></g>
+    <ellipse cx="44" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="41" y1="90" x2="36" y2="99" class="leg back"/>
+      <line x1="36" y1="99" x2="34" y2="113" class="leg back"/>
+      <line x1="51" y1="90" x2="54" y2="99" class="leg"/>
+      <line x1="54" y1="99" x2="54" y2="113" class="leg"/>
+      <line x1="27" y1="55" x2="22" y2="61.5" class="arm back"/>
+      <line x1="22" y1="61.5" x2="27" y2="68" class="arm back"/>
+      <line x1="55" y1="55" x2="61.5" y2="61.5" class="arm"/>
+      <line x1="61.5" y1="61.5" x2="58" y2="68" class="arm"/>
+      <polygon points="27,55 55,55 57,80 35,80" class="torso"/>
+      <polygon points="35,80 57,80 52,97 40,97" class="pants"/>
+      <line x1="41" y1="47" x2="46" y2="80" class="spine hint"/>
+      <circle cx="39" cy="33" r="11.5" class="head"/>
+      <circle cx="43" cy="32" r="1.5" class="face"/>
+      <circle cx="27" cy="68" r="5.4" class="glove back"/>
+      <circle cx="58" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="36" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="56" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(192 896)">
+    <g class="fx"></g>
+    <ellipse cx="40" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="38" y1="93" x2="32.5" y2="100.5" class="leg back"/>
+      <line x1="32.5" y1="100.5" x2="30" y2="113" class="leg back"/>
+      <line x1="48" y1="93" x2="50.5" y2="100.5" class="leg"/>
+      <line x1="50.5" y1="100.5" x2="50" y2="113" class="leg"/>
+      <line x1="23" y1="57" x2="18" y2="64.5" class="arm back"/>
+      <line x1="18" y1="64.5" x2="23" y2="72" class="arm back"/>
+      <line x1="51" y1="57" x2="57" y2="64" class="arm"/>
+      <line x1="57" y1="64" x2="53" y2="71" class="arm"/>
+      <polygon points="23,57 51,57 54,83 32,83" class="torso"/>
+      <polygon points="32,83 54,83 49,100 37,100" class="pants"/>
+      <line x1="37" y1="49" x2="43" y2="83" class="spine hint"/>
+      <circle cx="35" cy="35" r="11.5" class="head"/>
+      <circle cx="39" cy="34" r="1.5" class="face"/>
+      <circle cx="23" cy="72" r="5.4" class="glove back"/>
+      <circle cx="53" cy="71" r="5.4" class="glove"/>
+      <ellipse cx="32" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="52" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(288 896)">
+    <g class="fx"></g>
+    <ellipse cx="55" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="46" y1="85" x2="41.5" y2="89.5" class="leg back"/>
+      <line x1="41.5" y1="89.5" x2="40" y2="99" class="leg back"/>
+      <line x1="56" y1="85" x2="64.5" y2="94" class="leg"/>
+      <line x1="64.5" y1="94" x2="70" y2="108" class="leg"/>
+      <line x1="32" y1="53" x2="26.5" y2="57.5" class="arm back"/>
+      <line x1="26.5" y1="57.5" x2="31" y2="62" class="arm back"/>
+      <line x1="60" y1="53" x2="68" y2="60.5" class="arm"/>
+      <line x1="68" y1="60.5" x2="66" y2="68" class="arm"/>
+      <polygon points="32,53 60,53 62,75 40,75" class="torso"/>
+      <polygon points="40,75 62,75 57,92 45,92" class="pants"/>
+      <line x1="46" y1="45" x2="51" y2="75" class="spine hint"/>
+      <circle cx="44" cy="31" r="11.5" class="head"/>
+      <circle cx="48" cy="30" r="1.5" class="face"/>
+      <circle cx="31" cy="62" r="5.4" class="glove back"/>
+      <circle cx="66" cy="68" r="5.4" class="glove"/>
+      <ellipse cx="42" cy="101" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="72" cy="110" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(384 896)">
+    <g class="fx"></g>
+    <ellipse cx="55" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="49" y1="82" x2="40.5" y2="81" class="leg back"/>
+      <line x1="40.5" y1="81" x2="35" y2="85" class="leg back"/>
+      <line x1="59" y1="82" x2="68.5" y2="84.5" class="leg"/>
+      <line x1="68.5" y1="84.5" x2="75" y2="92" class="leg"/>
+      <line x1="33" y1="57" x2="26.5" y2="62.5" class="arm back"/>
+      <line x1="26.5" y1="62.5" x2="30" y2="68" class="arm back"/>
+      <line x1="61" y1="57" x2="71" y2="63.5" class="arm"/>
+      <line x1="71" y1="63.5" x2="71" y2="70" class="arm"/>
+      <polygon points="33,57 61,57 65,72 43,72" class="torso"/>
+      <polygon points="43,72 65,72 60,89 48,89" class="pants"/>
+      <line x1="47" y1="49" x2="54" y2="72" class="spine hint"/>
+      <circle cx="42" cy="35" r="11.5" class="head"/>
+      <circle cx="46" cy="34" r="1.5" class="face"/>
+      <circle cx="30" cy="68" r="5.4" class="glove back"/>
+      <circle cx="71" cy="70" r="5.4" class="glove"/>
+      <ellipse cx="37" cy="87" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="77" cy="94" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(480 896)">
+    <g class="fx"></g>
+    <ellipse cx="54" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="50" y1="96" x2="40" y2="96" class="leg back"/>
+      <line x1="40" y1="96" x2="33" y2="101" class="leg back"/>
+      <line x1="60" y1="96" x2="69" y2="99" class="leg"/>
+      <line x1="69" y1="99" x2="75" y2="107" class="leg"/>
+      <line x1="33" y1="69" x2="26" y2="72.5" class="arm back"/>
+      <line x1="26" y1="72.5" x2="29" y2="76" class="arm back"/>
+      <line x1="61" y1="69" x2="71.5" y2="75.5" class="arm"/>
+      <line x1="71.5" y1="75.5" x2="72" y2="82" class="arm"/>
+      <polygon points="33,69 61,69 66,86 44,86" class="torso"/>
+      <polygon points="44,86 66,86 61,103 49,103" class="pants"/>
+      <line x1="47" y1="61" x2="55" y2="86" class="spine hint"/>
+      <circle cx="39" cy="48" r="11.5" class="head"/>
+      <circle cx="43" cy="47" r="1.5" class="face"/>
+      <circle cx="29" cy="76" r="5.4" class="glove back"/>
+      <circle cx="72" cy="82" r="5.4" class="glove"/>
+      <ellipse cx="35" cy="103" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="77" cy="109" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(576 896)">
+    <g class="fx"><path d="M22 118 H82" class="impact-fx"/></g>
+    <ellipse cx="55" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="51" y1="116" x2="39.5" y2="112" class="leg back"/>
+      <line x1="39.5" y1="112" x2="31" y2="113" class="leg back"/>
+      <line x1="61" y1="116" x2="71.5" y2="112" class="leg"/>
+      <line x1="71.5" y1="112" x2="79" y2="113" class="leg"/>
+      <line x1="35" y1="105" x2="29" y2="101.5" class="arm back"/>
+      <line x1="29" y1="101.5" x2="33" y2="98" class="arm back"/>
+      <line x1="63" y1="105" x2="71.5" y2="101.5" class="arm"/>
+      <line x1="71.5" y1="101.5" x2="70" y2="98" class="arm"/>
+      <polygon points="35,105 63,105 67,106 45,106" class="torso"/>
+      <polygon points="45,106 67,106 62,123 50,123" class="pants"/>
+      <line x1="49" y1="97" x2="56" y2="106" class="spine hint"/>
+      <circle cx="38" cy="91" r="11.5" class="head"/>
+      <circle cx="42" cy="90" r="1.5" class="face"/>
+      <circle cx="33" cy="98" r="5.4" class="glove back"/>
+      <circle cx="70" cy="98" r="5.4" class="glove"/>
+      <ellipse cx="33" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="81" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+<g transform="translate(672 896)">
+    <g class="fx"></g>
+    <ellipse cx="81.5" cy="119" rx="27" ry="4" class="shadow"/>
+    <g class="body chunky">
+      <line x1="56" y1="117" x2="64.5" y2="112.5" class="leg back"/>
+      <line x1="64.5" y1="112.5" x2="76" y2="113" class="leg back"/>
+      <line x1="66" y1="117" x2="78" y2="112.5" class="leg"/>
+      <line x1="78" y1="112.5" x2="87" y2="113" class="leg"/>
+      <line x1="32" y1="113" x2="29.5" y2="114.5" class="arm back"/>
+      <line x1="29.5" y1="114.5" x2="37" y2="116" class="arm back"/>
+      <line x1="60" y1="113" x2="69" y2="113.5" class="arm"/>
+      <line x1="69" y1="113.5" x2="68" y2="114" class="arm"/>
+      <polygon points="32,113 60,113 72,107 50,107" class="torso"/>
+      <polygon points="50,107 72,107 67,124 55,124" class="pants"/>
+      <line x1="46" y1="105" x2="61" y2="107" class="spine hint"/>
+      <circle cx="35" cy="103" r="11.5" class="head"/>
+      <circle cx="39" cy="102" r="1.5" class="face"/>
+      <circle cx="37" cy="116" r="5.4" class="glove back"/>
+      <circle cx="68" cy="114" r="5.4" class="glove"/>
+      <ellipse cx="78" cy="115" rx="8" ry="4.5" class="boot back"/>
+      <ellipse cx="89" cy="115" rx="8" ry="4.5" class="boot"/>
+    </g></g>
+</svg>
