@@ -13,6 +13,8 @@ npm install
 npm run dev        # opens http://localhost:5173
 ```
 
+- **Windows quick start:** double-click `Start Bro Fighters.bat`. See
+  [WINDOWS_LAUNCHER.md](WINDOWS_LAUNCHER.md) for desktop shortcut instructions.
 - **Join screen:** each input source taps **jump** to join, **block** to leave, **punch**
   to start (needs 2+ players).
 - **Keyboard P1:** `WASD` move · `J` punch · `L` block · `Space` jump
