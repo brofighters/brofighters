@@ -87,9 +87,19 @@ export interface CharacterDef {
   spriteSheet: string | null;
   /** body half-extents used for the default hurtbox and body collision */
   body: { w: number; d: number; h: number };
+  /** optional; defaults to MAX_HEALTH */
+  maxHealth?: number;
   walkSpeedX?: number;
   walkSpeedDepth?: number;
+  runSpeedX?: number;
   jumpVelocity?: number;
+  regularJumpForwardSpeedX?: number;
+  regularJumpForwardSpeedDepth?: number;
+  doubleJumpDashSpeedX?: number;
+  doubleJumpDashSpeedDepth?: number;
+  doubleJumpDashHeight?: number;
+  doubleJumpDashGravity?: number;
+  doubleJumpDashDistanceMultiplier?: number;
   frames: Frame[];
   states: Record<string, StateDef>;
   /** ground combo chain: pressing the key again during a cancel window advances */

@@ -42,9 +42,18 @@ depth **and** height (3-axis AABB test).
   "portrait": "/assets/icons/template-guy-cutout.png", // character-select portrait
   "spriteSheet": null,        // renderer-only; null => coloured placeholder
   "body": { "w": 22, "d": 16, "h": 58 },   // half-extents; default hurtbox + footprint
+  "maxHealth": 500,           // optional; falls back to MAX_HEALTH
   "walkSpeedX": 4.2,          // optional; sim units per tick (x)
   "walkSpeedDepth": 2.6,      // optional; sim units per tick (depth)
+  "runSpeedX": 6.2,           // optional; double-tap run speed
   "jumpVelocity": 14,         // optional; initial upward height velocity
+  "regularJumpForwardSpeedX": 5.5,     // optional; normal forward jump movement
+  "regularJumpForwardSpeedDepth": 2.4, // optional; normal diagonal jump depth
+  "doubleJumpDashSpeedX": 6.875,       // optional; dash-jump forward speed
+  "doubleJumpDashSpeedDepth": 3,       // optional; dash-jump depth speed
+  "doubleJumpDashHeight": 5,           // optional; dash-jump starting height velocity
+  "doubleJumpDashGravity": 0.36,       // optional; lower = flatter/longer dash arc
+  "doubleJumpDashDistanceMultiplier": 1.5, // optional; x distance vs normal forward jump
 
   "frames":   [ /* Frame[]  */ ],
   "states":   { /* name -> StateDef */ },

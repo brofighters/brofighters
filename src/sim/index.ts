@@ -8,6 +8,7 @@ export { step } from "./step";
 export {
   createGameState,
   createFighter,
+  centeredVersusSpawns,
   defaultSpawns,
   resetRound,
   type SpawnConfig,

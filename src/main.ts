@@ -8,8 +8,8 @@ import {
   CHARACTER_LIST,
   CHARACTERS,
   TICK_DT,
+  centeredVersusSpawns,
   createGameState,
-  defaultSpawns,
   resetRound,
   step,
   type GameState,
@@ -79,10 +79,11 @@ let prevTransforms = new Map<number, RenderTransform>();
 let keyConfig = loadKeyConfig();
 let draftKeyConfig = cloneConfig(keyConfig);
 let awaitingKey: ConfigField | null = null;
-let selectedCharacterIndex = 0;
+let selectedCharacterIndexes = [0, 0];
 let selectedArenaIndex = 0;
 let arenaImage: HTMLImageElement | null = null;
 const characterPortraits = new Map<string, HTMLImageElement>();
+const spriteSheets = new Map<string, HTMLImageElement>();
 
 input.setKeyboardConfig(keyConfig);
 loadImages();
@@ -95,10 +96,17 @@ function loadImages(): void {
   arenaImage.src = ARENAS[0].imagePath;
 
   for (const character of CHARACTER_LIST) {
-    if (!character.portrait) continue;
-    const portrait = new Image();
-    portrait.src = character.portrait;
-    characterPortraits.set(character.id, portrait);
+    if (character.portrait) {
+      const portrait = new Image();
+      portrait.src = character.portrait;
+      characterPortraits.set(character.id, portrait);
+    }
+
+    if (character.spriteSheet) {
+      const sheet = new Image();
+      sheet.src = character.spriteSheet;
+      spriteSheets.set(character.id, sheet);
+    }
   }
 }
 
@@ -127,8 +135,10 @@ function handleKeyDown(e: KeyboardEvent): void {
   } else if (screen === "keyConfig") {
     if (e.code === "Enter") saveKeyConfig();
   } else if (screen === "characterSelect") {
-    if (e.code === "ArrowLeft") selectCharacter(-1);
-    if (e.code === "ArrowRight") selectCharacter(1);
+    if (e.code === keyConfig.p1.left) selectCharacter(0, -1);
+    if (e.code === keyConfig.p1.right) selectCharacter(0, 1);
+    if (e.code === keyConfig.p2.left) selectCharacter(1, -1);
+    if (e.code === keyConfig.p2.right) selectCharacter(1, 1);
     if (e.code === "Enter" || e.code === "KeyF" || e.code === keyConfig.p1.punch) {
       screen = "arenaSelect";
     }
@@ -158,8 +168,10 @@ function handleClick(e: MouseEvent): void {
   } else if (hit.id.startsWith("bind:")) {
     const [, player, action] = hit.id.split(":");
     awaitingKey = { player: player as "p1" | "p2", action: action as KeyAction };
-  } else if (hit.id === "charLeft") selectCharacter(-1);
-  else if (hit.id === "charRight") selectCharacter(1);
+  } else if (hit.id === "charLeft:p0") selectCharacter(0, -1);
+  else if (hit.id === "charRight:p0") selectCharacter(0, 1);
+  else if (hit.id === "charLeft:p1") selectCharacter(1, -1);
+  else if (hit.id === "charRight:p1") selectCharacter(1, 1);
   else if (hit.id === "chooseCharacter") screen = "arenaSelect";
   else if (hit.id === "arenaLeft") selectArena(-1);
   else if (hit.id === "arenaRight") selectArena(1);
@@ -190,9 +202,14 @@ function setDraftKey(field: ConfigField, code: string): void {
   if (field.action === "punch") layout.kick = code;
 }
 
-function selectCharacter(delta: number): void {
-  selectedCharacterIndex = wrap(selectedCharacterIndex + delta, CHARACTER_LIST.length);
-  for (const entry of roster) entry.characterId = CHARACTER_LIST[selectedCharacterIndex].id;
+function selectCharacter(playerIndex: number, delta: number): void {
+  selectedCharacterIndexes[playerIndex] = wrap(
+    selectedCharacterIndexes[playerIndex] + delta,
+    CHARACTER_LIST.length,
+  );
+  if (roster[playerIndex]) {
+    roster[playerIndex].characterId = CHARACTER_LIST[selectedCharacterIndexes[playerIndex]].id;
+  }
 }
 
 function selectArena(delta: number): void {
@@ -203,14 +220,14 @@ function ensureDefaultRoster(): void {
   const players = input.listPlayers().filter((p) => p.kind === "keyboard").slice(0, 2);
   roster = players.map((source, i) => ({
     source,
-    characterId: CHARACTER_LIST[selectedCharacterIndex].id,
+    characterId: CHARACTER_LIST[selectedCharacterIndexes[i] ?? 0].id,
     color: PLAYER_COLORS[i % PLAYER_COLORS.length],
   }));
 }
 
 function startMatch(): void {
   ensureDefaultRoster();
-  spawns = defaultSpawns(roster.map((r) => ({ id: r.source.id, characterId: r.characterId })));
+  spawns = centeredVersusSpawns(roster.map((r) => ({ id: r.source.id, characterId: r.characterId })));
   state = createGameState(CHARACTERS, spawns, 0x1234);
   prevTransforms = snapshot(state);
   accumulator = 0;
@@ -327,22 +344,48 @@ function drawPlayerKeys(title: string, player: "p1" | "p2", x: number): void {
 }
 
 function drawCharacterSelect(): void {
-  const char = CHARACTER_LIST[selectedCharacterIndex];
-  beginMenu("SELECT BRO", "Left / Right to scroll. More bros can join this roster later.");
-  drawButton("charLeft", "<", 150, 245, 54, 54);
-  drawButton("charRight", ">", W - 204, 245, 54, 54);
-
-  const portrait = characterPortraits.get(char.id);
-  if (portrait?.complete) {
-    ctx.drawImage(portrait, 325, 142, 310, 310);
-  }
-  ctx.fillStyle = "#f4f7ff";
-  ctx.font = "bold 24px ui-monospace, monospace";
-  ctx.fillText(char.name, W / 2, 468);
-  ctx.fillStyle = "#9fa9b8";
-  ctx.font = "13px ui-monospace, monospace";
-  ctx.fillText("Player 1 and Player 2 will both use this template character.", W / 2, 496);
+  beginMenu("SELECT BRO", "Each player chooses a fighter.");
+  drawCharacterPanel(0, "Player 1", 70, keyLabel(keyConfig.p1.left), keyLabel(keyConfig.p1.right));
+  drawCharacterPanel(1, "Player 2", 520, keyLabel(keyConfig.p2.left), keyLabel(keyConfig.p2.right));
   drawButton("chooseCharacter", "Choose", W / 2 - 80, 414, 160, 42, true);
+}
+
+function drawCharacterPanel(
+  playerIndex: number,
+  label: string,
+  x: number,
+  leftKey: string,
+  rightKey: string,
+): void {
+  const char = CHARACTER_LIST[selectedCharacterIndexes[playerIndex] ?? 0];
+  const portrait = characterPortraits.get(char.id);
+  const panelW = 370;
+
+  ctx.fillStyle = "rgba(12,18,28,0.58)";
+  ctx.strokeStyle = playerIndex === 0 ? "#e85d5d" : "#5da9e8";
+  ctx.lineWidth = 2;
+  roundRect(ctx, x, 145, panelW, 240, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 20px ui-monospace, monospace";
+  ctx.textAlign = "center";
+  ctx.fillText(label, x + panelW / 2, 174);
+
+  if (portrait?.complete) {
+    ctx.drawImage(portrait, x + 100, 188, 170, 170);
+  }
+
+  drawButton(`charLeft:p${playerIndex}`, "<", x + 24, 244, 46, 46);
+  drawButton(`charRight:p${playerIndex}`, ">", x + panelW - 70, 244, 46, 46);
+
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 18px ui-monospace, monospace";
+  ctx.fillText(char.name, x + panelW / 2, 362);
+  ctx.fillStyle = "#9fa9b8";
+  ctx.font = "12px ui-monospace, monospace";
+  ctx.fillText(`${leftKey} / ${rightKey}`, x + panelW / 2, 392);
 }
 
 function drawArenaSelect(): void {
@@ -443,8 +486,11 @@ function lerpTransforms(
 
 function cameraFor(s: GameState): number {
   if (s.fighters.length === 0) return 0;
-  const avgX = s.fighters.reduce((sum, f) => sum + f.x, 0) / s.fighters.length;
-  const target = avgX - W / 2;
+  const xs = s.fighters.map((f) => f.x);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const groupCenter = (minX + maxX) / 2;
+  const target = groupCenter - W / 2;
   return Math.max(0, Math.min(ARENA.xMax - W, target));
 }
 
@@ -481,6 +527,7 @@ function frame(now: number): void {
     debug,
     cameraX: cameraFor(s),
     arenaImage,
+    spriteSheets,
   });
 
   requestAnimationFrame(frame);

@@ -9,6 +9,7 @@ import type { RngState } from "./prng";
 
 /** Facing: +1 faces right (forward = +x), -1 faces left. */
 export type Facing = 1 | -1;
+export type AirAction = "none" | "regularJump" | "forwardDash";
 
 export interface Fighter {
   id: number;
@@ -41,6 +42,21 @@ export interface Fighter {
   hitstun: number;
   /** ticks until a knocked-down fighter gets up */
   getUpTicks: number;
+  /** ticks after landing where jump triggers a short dash hop */
+  landingJumpTicks: number;
+  /** ticks after landing from a forward dash where control is locked */
+  dashRecoveryTicks: number;
+  /** whether the fighter was grounded at the end of the previous tick */
+  wasGrounded: boolean;
+  /** used to decide whether landing opens dash or recovery rules */
+  airAction: AirAction;
+  /** remaining forward x distance for a capped dash-jump */
+  dashDistanceRemaining: number;
+  /** recent directional taps used for double-tap run detection */
+  lastLeftTapTick: number;
+  lastRightTapTick: number;
+  /** -1/1 while a double-tap run is being held, 0 otherwise */
+  runDirection: number;
 
   /** which combo chain key is active ("punch"/"kick") and how far along */
   comboKey: string | null;

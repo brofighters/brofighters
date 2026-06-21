@@ -33,6 +33,7 @@ export interface RenderView {
   debug: boolean;
   cameraX?: number;
   arenaImage?: HTMLImageElement | null;
+  spriteSheets?: Map<string, HTMLImageElement>;
 }
 
 const FLOOR_Y = 360;
@@ -59,7 +60,7 @@ export class Renderer {
     for (const f of order) {
       const t = view.interp.get(f.id) ?? f;
       const char = state.characters[f.characterId];
-      this.drawFighter(ctx, f, char, t, this.colorFor(view, f.id), cameraX);
+      this.drawFighter(ctx, f, char, t, this.colorFor(view, f.id), cameraX, view);
       if (view.debug) this.drawBoxes(ctx, f, char, t, cameraX);
     }
 
@@ -146,6 +147,7 @@ export class Renderer {
     t: RenderTransform,
     color: string,
     cameraX: number,
+    view: RenderView,
   ): void {
     const { sx, feetY, scale } = this.projectWithCamera(t, cameraX);
     const bodyW = char.body.w * 2 * scale;
@@ -168,6 +170,14 @@ export class Renderer {
     const downed = f.state === "knockdown";
     ctx.save();
     if (!f.alive) ctx.globalAlpha = 0.55;
+
+    const sheet = view.spriteSheets?.get(f.characterId);
+    const frame = this.currentFrame(f, char);
+    if (sheet?.complete && sheet.naturalWidth > 0 && frame && frame.spriteRect[2] > 0) {
+      this.drawSpriteFrame(ctx, sheet, frame.spriteRect, sx, feetY, scale, t.facing);
+      ctx.restore();
+      return;
+    }
 
     // Body.
     ctx.fillStyle = color;
@@ -199,6 +209,38 @@ export class Renderer {
     ctx.restore();
   }
 
+  private drawSpriteFrame(
+    ctx: CanvasRenderingContext2D,
+    sheet: HTMLImageElement,
+    rect: readonly [number, number, number, number],
+    sx: number,
+    feetY: number,
+    scale: number,
+    facing: number,
+  ): void {
+    const [srcX, srcY, srcW, srcH] = rect;
+    const inset = 2;
+    const cropX = srcX + inset;
+    const cropY = srcY + inset;
+    const cropW = srcW - inset * 2;
+    const cropH = srcH - inset * 2;
+    const drawW = srcW * scale;
+    const drawH = srcH * scale;
+    const drawX = sx - drawW / 2;
+    const drawY = feetY - drawH;
+
+    ctx.imageSmoothingEnabled = false;
+    if (facing < 0) {
+      ctx.save();
+      ctx.translate(sx, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(sheet, cropX, cropY, cropW, cropH, -drawW / 2, drawY, drawW, drawH);
+      ctx.restore();
+    } else {
+      ctx.drawImage(sheet, cropX, cropY, cropW, cropH, drawX, drawY, drawW, drawH);
+    }
+  }
+
   private drawBoxes(
     ctx: CanvasRenderingContext2D,
     f: Fighter,
@@ -206,9 +248,7 @@ export class Renderer {
     t: RenderTransform,
     cameraX: number,
   ): void {
-    const def = char.states[f.state];
-    const frameId = def?.frames[Math.min(f.frameIndex, def.frames.length - 1)];
-    const frame = char.frames.find((fr) => fr.id === frameId);
+    const frame = this.currentFrame(f, char);
     if (!frame) return;
 
     const hurt = frame.hurtboxes?.length
@@ -292,6 +332,12 @@ export class Renderer {
 
   private colorFor(view: RenderView, id: number): string {
     return view.players.find((p) => p.id === id)?.color ?? "#9aa";
+  }
+
+  private currentFrame(f: Fighter, char: CharacterDef) {
+    const def = char.states[f.state];
+    const frameId = def?.frames[Math.min(f.frameIndex, def.frames.length - 1)];
+    return char.frames.find((fr) => fr.id === frameId);
   }
 
   private roundRect(

@@ -17,7 +17,7 @@ export interface SpawnConfig {
   facing: Facing;
 }
 
-export function createFighter(cfg: SpawnConfig): Fighter {
+export function createFighter(cfg: SpawnConfig, character?: CharacterDef): Fighter {
   return {
     id: cfg.id,
     characterId: cfg.characterId,
@@ -28,7 +28,7 @@ export function createFighter(cfg: SpawnConfig): Fighter {
     vdepth: 0,
     vheight: 0,
     facing: cfg.facing,
-    health: MAX_HEALTH,
+    health: character?.maxHealth ?? MAX_HEALTH,
     alive: true,
     state: "idle",
     frameIndex: 0,
@@ -36,6 +36,14 @@ export function createFighter(cfg: SpawnConfig): Fighter {
     hitstop: 0,
     hitstun: 0,
     getUpTicks: 0,
+    landingJumpTicks: 0,
+    dashRecoveryTicks: 0,
+    wasGrounded: true,
+    airAction: "none",
+    dashDistanceRemaining: 0,
+    lastLeftTapTick: -9999,
+    lastRightTapTick: -9999,
+    runDirection: 0,
     comboKey: null,
     comboIndex: 0,
     hasHitThisAttack: false,
@@ -60,6 +68,24 @@ export function defaultSpawns(specs: { id: number; characterId: string }[]): Spa
   });
 }
 
+/** Spawn fighters close enough for local versus: visible together, facing inward. */
+export function centeredVersusSpawns(
+  specs: { id: number; characterId: string }[],
+): SpawnConfig[] {
+  const n = specs.length;
+  const centerX = (ARENA.xMin + ARENA.xMax) / 2;
+  const centerDepth = (ARENA.depthMin + ARENA.depthMax) / 2;
+  const spacing = 150;
+  const startX = centerX - ((n - 1) * spacing) / 2;
+
+  return specs.map((s, i) => {
+    const x = startX + i * spacing;
+    const depth = centerDepth + (i % 2 === 0 ? -8 : 8);
+    const facing: Facing = x <= centerX ? 1 : -1;
+    return { id: s.id, characterId: s.characterId, x, depth, facing };
+  });
+}
+
 export function createGameState(
   characters: Record<string, CharacterDef>,
   spawns: SpawnConfig[],
@@ -68,7 +94,7 @@ export function createGameState(
   return {
     tick: 0,
     rng: createRng(seed),
-    fighters: spawns.map(createFighter),
+    fighters: spawns.map((spawn) => createFighter(spawn, characters[spawn.characterId])),
     characters,
     phase: "fighting",
     winnerId: null,
@@ -79,7 +105,7 @@ export function createGameState(
 /** Reset the round in place: respawn everyone at full health, keep characters. */
 export function resetRound(state: GameState, spawns: SpawnConfig[]): void {
   state.tick = 0;
-  state.fighters = spawns.map(createFighter);
+  state.fighters = spawns.map((spawn) => createFighter(spawn, state.characters[spawn.characterId]));
   state.phase = "fighting";
   state.winnerId = null;
   state.resetTicks = 0;

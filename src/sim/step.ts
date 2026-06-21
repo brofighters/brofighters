@@ -11,6 +11,14 @@
 import {
   ARENA,
   COMMAND_BUFFER_TICKS,
+  DEFAULT_RUN_SPEED_X,
+  DOUBLE_JUMP_DASH_DISTANCE_MULTIPLIER,
+  DOUBLE_JUMP_DASH_GRAVITY,
+  DOUBLE_JUMP_DASH_HEIGHT,
+  DOUBLE_JUMP_DASH_SPEED_DEPTH,
+  DOUBLE_JUMP_DASH_SPEED_X,
+  DOUBLE_JUMP_RECOVERY_TICKS,
+  DOUBLE_JUMP_WINDOW_TICKS,
   DEFAULT_JUMP_VELOCITY,
   DEFAULT_WALK_SPEED_DEPTH,
   DEFAULT_WALK_SPEED_X,
@@ -18,6 +26,9 @@ import {
   GROUND_HEIGHT,
   HITSTOP_TICKS,
   KNOCKDOWN_GET_UP_TICKS,
+  REGULAR_JUMP_FORWARD_SPEED_DEPTH,
+  REGULAR_JUMP_FORWARD_SPEED_X,
+  RUN_DOUBLE_TAP_TICKS,
   ROUND_RESET_TICKS,
 } from "./constants";
 import type { Box, CharacterDef, Frame, HitBox } from "./characters/types";
@@ -74,6 +85,7 @@ function updateFighter(state: GameState, f: Fighter, input: InputState): void {
   pruneBuffer(f, state.tick);
 
   const grounded = f.height <= GROUND_HEIGHT + 1e-6 && f.vheight <= 0;
+  if (grounded && f.landingJumpTicks > 0) f.landingJumpTicks--;
 
   // Reaction states first (hitstun / knockdown ignore input).
   if (f.state === "hit") {
@@ -84,10 +96,18 @@ function updateFighter(state: GameState, f: Fighter, input: InputState): void {
       f.getUpTicks--;
       if (f.getUpTicks <= 0 && grounded) enterState(f, char, "idle");
     }
+  } else if (f.dashRecoveryTicks > 0) {
+    f.dashRecoveryTicks--;
+    f.vx = 0;
+    f.vdepth = 0;
+    f.runDirection = 0;
+    enterState(f, char, "idle", true);
   } else {
     const def = char.states[f.state];
-    if (def.control === "free") {
-      handleFreeControl(f, char, input, grounded);
+    if (f.state === "doubleJumpDash") {
+      handleDoubleJumpDash(f, char, input);
+    } else if (def.control === "free") {
+      handleFreeControl(f, char, input, grounded, state.tick);
     } else {
       // Locked (attack) — allow combo cancels only.
       handleAttackCancels(f, char, input);
@@ -106,7 +126,10 @@ function handleFreeControl(
   char: CharacterDef,
   input: InputState,
   grounded: boolean,
+  tick: number,
 ): void {
+  updateRunIntent(f, input, tick);
+
   // Specials are checked first: their sequences (e.g. block+back+jump) include
   // buttons that would otherwise trigger jump/attack.
   if (grounded && tryStartSpecial(f, char)) return;
@@ -119,20 +142,28 @@ function handleFreeControl(
 
   // Jump.
   if (grounded && edge(f.prevInput, input, "jump") && char.states.jump) {
-    f.vheight = char.jumpVelocity ?? DEFAULT_JUMP_VELOCITY;
-    enterState(f, char, "jump");
+    if (f.landingJumpTicks > 0 && char.states.doubleJumpDash) {
+      startDoubleJumpDash(f, char, input);
+    } else {
+      startRegularJump(f, char, input);
+    }
+    return;
   }
 
   // Blocking (grounded only; locks out movement while held).
   if (grounded && input.block && char.states.block) {
-    enterState(f, char, "block");
+    enterState(f, char, "block", true);
   } else if (f.state === "block" && !input.block) {
     enterState(f, char, "idle");
   }
 
   // Movement (world-space; facing is independent and auto-tracks the opponent).
   const blocking = f.state === "block";
-  const speedX = (char.walkSpeedX ?? DEFAULT_WALK_SPEED_X) * (grounded ? 1 : 0.7);
+  const running = grounded && f.runDirection !== 0 && inputForDirection(input, f.runDirection);
+  const baseSpeedX = running
+    ? char.runSpeedX ?? DEFAULT_RUN_SPEED_X
+    : char.walkSpeedX ?? DEFAULT_WALK_SPEED_X;
+  const speedX = baseSpeedX * (grounded ? 1 : 0.7);
   const speedZ = char.walkSpeedDepth ?? DEFAULT_WALK_SPEED_DEPTH;
 
   let mvx = 0;
@@ -140,6 +171,7 @@ function handleFreeControl(
   if (!blocking) {
     if (input.left) mvx -= 1;
     if (input.right) mvx += 1;
+    if (input.left !== input.right) f.facing = input.left ? -1 : 1;
     if (grounded) {
       if (input.up) mvz -= 1; // up the field = further away (depth decreases)
       if (input.down) mvz += 1;
@@ -150,9 +182,44 @@ function handleFreeControl(
   if (grounded) f.vdepth = mvz * speedZ;
 
   // Pick locomotion animation while grounded & not in a special transition.
-  if (grounded && (f.state === "idle" || f.state === "walk")) {
-    enterState(f, char, mvx !== 0 || mvz !== 0 ? "walk" : "idle", true);
+  if (grounded && (f.state === "idle" || f.state === "walk" || f.state === "run")) {
+    const moving = mvx !== 0 || mvz !== 0;
+    const next = moving ? (running && mvx !== 0 && char.states.run ? "run" : "walk") : "idle";
+    enterState(f, char, next, true);
   }
+}
+
+function updateRunIntent(f: Fighter, input: InputState, tick: number): void {
+  if (edge(f.prevInput, input, "left")) {
+    if (tick - f.lastLeftTapTick <= RUN_DOUBLE_TAP_TICKS) f.runDirection = -1;
+    f.lastLeftTapTick = tick;
+  }
+  if (edge(f.prevInput, input, "right")) {
+    if (tick - f.lastRightTapTick <= RUN_DOUBLE_TAP_TICKS) f.runDirection = 1;
+    f.lastRightTapTick = tick;
+  }
+
+  if (f.runDirection !== 0 && !inputForDirection(input, f.runDirection)) {
+    f.runDirection = 0;
+  }
+}
+
+function inputForDirection(input: InputState, dir: number): boolean {
+  return dir < 0 ? input.left && !input.right : input.right && !input.left;
+}
+
+function startRegularJump(f: Fighter, char: CharacterDef, input: InputState): void {
+  const xDir = input.left === input.right ? 0 : input.left ? -1 : 1;
+  let zDir = 0;
+  if (input.up !== input.down) zDir = input.up ? -1 : 1;
+
+  if (xDir !== 0) f.facing = xDir as Facing;
+  f.vx = xDir * (char.regularJumpForwardSpeedX ?? REGULAR_JUMP_FORWARD_SPEED_X);
+  f.vdepth = zDir * (char.regularJumpForwardSpeedDepth ?? REGULAR_JUMP_FORWARD_SPEED_DEPTH);
+  f.vheight = char.jumpVelocity ?? DEFAULT_JUMP_VELOCITY;
+  f.airAction = "regularJump";
+  f.runDirection = 0;
+  enterState(f, char, "jump");
 }
 
 /** During an attack, allow cancelling into the next combo hit within a window. */
@@ -180,6 +247,34 @@ function startCombo(f: Fighter, char: CharacterDef, key: string, firstState: str
   f.comboIndex = 0;
   f.hasHitThisAttack = false;
   enterState(f, char, firstState);
+}
+
+function startDoubleJumpDash(f: Fighter, char: CharacterDef, input: InputState): void {
+  const xDir = input.left === input.right ? f.facing : input.left ? -1 : 1;
+  let zDir = 0;
+  if (input.up !== input.down) zDir = input.up ? -1 : 1;
+
+  f.facing = xDir as Facing;
+  f.vx = xDir * (char.doubleJumpDashSpeedX ?? DOUBLE_JUMP_DASH_SPEED_X);
+  f.vdepth = zDir * (char.doubleJumpDashSpeedDepth ?? DOUBLE_JUMP_DASH_SPEED_DEPTH);
+  f.vheight = char.doubleJumpDashHeight ?? DOUBLE_JUMP_DASH_HEIGHT;
+  f.landingJumpTicks = 0;
+  f.airAction = "forwardDash";
+  f.dashDistanceRemaining =
+    estimateRegularForwardJumpDistance(char) *
+    (char.doubleJumpDashDistanceMultiplier ?? DOUBLE_JUMP_DASH_DISTANCE_MULTIPLIER);
+  f.runDirection = 0;
+  f.comboKey = null;
+  f.comboIndex = 0;
+  f.hasHitThisAttack = false;
+  enterState(f, char, "doubleJumpDash");
+}
+
+function handleDoubleJumpDash(f: Fighter, char: CharacterDef, input: InputState): void {
+  if (edge(f.prevInput, input, "punch") && char.states.doubleJumpAttack) {
+    f.hasHitThisAttack = false;
+    enterState(f, char, "doubleJumpAttack");
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -313,19 +408,54 @@ function applyImpulse(f: Fighter, frame: Frame): void {
 function applyPhysics(state: GameState, f: Fighter, grounded: boolean): void {
   // Gravity (airborne).
   if (!grounded || f.vheight > 0) {
-    f.vheight -= GRAVITY;
+    const char = state.characters[f.characterId];
+    const gravity =
+      f.airAction === "forwardDash"
+        ? char.doubleJumpDashGravity ?? DOUBLE_JUMP_DASH_GRAVITY
+        : GRAVITY;
+    f.vheight -= gravity;
   }
 
-  f.x += f.vx;
+  let moveX = f.vx;
+  if (f.airAction === "forwardDash" && f.dashDistanceRemaining > 0) {
+    const capped = Math.min(Math.abs(moveX), f.dashDistanceRemaining);
+    moveX = Math.sign(moveX) * capped;
+    f.dashDistanceRemaining -= capped;
+    if (f.dashDistanceRemaining <= 1e-6) {
+      f.dashDistanceRemaining = 0;
+      f.vx = 0;
+    }
+  }
+
+  f.x += moveX;
   f.depth += f.vdepth;
   f.height += f.vheight;
 
   // Ground collision.
+  let landed = false;
   if (f.height <= GROUND_HEIGHT) {
+    landed = !f.wasGrounded && f.vheight <= 0;
     f.height = GROUND_HEIGHT;
     if (f.vheight < 0) f.vheight = 0;
     // Landing from a jump returns to idle (unless mid-reaction / attack on ground).
-    if (f.state === "jump") enterState(f, state.characters[f.characterId], "idle");
+    if (
+      f.state === "jump" ||
+      f.state === "doubleJumpDash" ||
+      f.state === "doubleJumpAttack"
+    ) {
+      enterState(f, state.characters[f.characterId], "idle");
+    }
+    if (landed) {
+      if (f.airAction === "regularJump") {
+        f.landingJumpTicks = DOUBLE_JUMP_WINDOW_TICKS;
+      } else if (f.airAction === "forwardDash") {
+        f.dashRecoveryTicks = DOUBLE_JUMP_RECOVERY_TICKS;
+        f.landingJumpTicks = 0;
+        f.dashDistanceRemaining = 0;
+        f.runDirection = 0;
+      }
+      f.airAction = "none";
+    }
   }
 
   // Friction in depth so taps don't slide forever (x is set directly each tick).
@@ -337,6 +467,24 @@ function applyPhysics(state: GameState, f: Fighter, grounded: boolean): void {
   if (f.x > ARENA.xMax) f.x = ARENA.xMax;
   if (f.depth < ARENA.depthMin) f.depth = ARENA.depthMin;
   if (f.depth > ARENA.depthMax) f.depth = ARENA.depthMax;
+  f.wasGrounded = f.height <= GROUND_HEIGHT + 1e-6 && f.vheight <= 0;
+}
+
+function estimateRegularForwardJumpDistance(char: CharacterDef): number {
+  const initialSpeed = char.regularJumpForwardSpeedX ?? REGULAR_JUMP_FORWARD_SPEED_X;
+  const airControlSpeed = (char.walkSpeedX ?? DEFAULT_WALK_SPEED_X) * 0.7;
+  const jumpVelocity = char.jumpVelocity ?? DEFAULT_JUMP_VELOCITY;
+
+  let height = 0;
+  let vheight = jumpVelocity;
+  let ticks = 0;
+  do {
+    vheight -= GRAVITY;
+    height += vheight;
+    ticks++;
+  } while (height > GROUND_HEIGHT || vheight > 0);
+
+  return initialSpeed + Math.max(0, ticks - 1) * airControlSpeed;
 }
 
 /** Minimal physics used while a round is over (no input). */

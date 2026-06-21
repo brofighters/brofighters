@@ -7,6 +7,18 @@
 import { describe, it, expect } from "vitest";
 import {
   CHARACTERS,
+  DEFAULT_JUMP_VELOCITY,
+  DEFAULT_RUN_SPEED_X,
+  DEFAULT_WALK_SPEED_X,
+  DOUBLE_JUMP_DASH_GRAVITY,
+  DOUBLE_JUMP_DASH_HEIGHT,
+  DOUBLE_JUMP_DASH_SPEED_X,
+  DOUBLE_JUMP_RECOVERY_TICKS,
+  DOUBLE_JUMP_WINDOW_TICKS,
+  GRAVITY,
+  MAX_HEALTH,
+  REGULAR_JUMP_FORWARD_SPEED_X,
+  centeredVersusSpawns,
   createGameState,
   defaultSpawns,
   step,
@@ -77,6 +89,14 @@ function fingerprint(s: GameState): string {
       state: f.state,
       frameIndex: f.frameIndex,
       frameTicks: f.frameTicks,
+      landingJumpTicks: f.landingJumpTicks,
+      dashRecoveryTicks: f.dashRecoveryTicks,
+      wasGrounded: f.wasGrounded,
+      airAction: f.airAction,
+      dashDistanceRemaining: f.dashDistanceRemaining,
+      lastLeftTapTick: f.lastLeftTapTick,
+      lastRightTapTick: f.lastRightTapTick,
+      runDirection: f.runDirection,
     })),
   });
 }
@@ -101,6 +121,23 @@ describe("simulation determinism", () => {
 });
 
 describe("basic combat", () => {
+  it("centered versus spawns keep two fighters visible and facing inward", () => {
+    const spawns = centeredVersusSpawns([
+      { id: 0, characterId: "brawler" },
+      { id: 1, characterId: "brawler" },
+    ]);
+
+    expect(Math.abs(spawns[1].x - spawns[0].x)).toBeLessThan(960);
+    expect(spawns[0].facing).toBe(1);
+    expect(spawns[1].facing).toBe(-1);
+  });
+
+  it("starts fighters at the configured full health", () => {
+    const s = makeState();
+    expect(s.fighters[0].health).toBe(MAX_HEALTH);
+    expect(s.fighters[1].health).toBe(MAX_HEALTH);
+  });
+
   it("a clean punch damages an in-range opponent", () => {
     const s = makeState();
     // Place fighters adjacent and facing each other.
@@ -138,6 +175,125 @@ describe("basic combat", () => {
     }
     expect(s.phase).toBe("roundOver");
     expect(s.winnerId).toBe(0);
+  });
+
+  it("jumping again just after landing starts a dash hop", () => {
+    const s = makeState();
+    const p0 = s.fighters[0];
+
+    step(s, { 0: { ...emptyIn(), jump: true }, 1: emptyIn() });
+    step(s, { 0: emptyIn(), 1: emptyIn() });
+    while (p0.height > 0 || p0.vheight > 0) step(s, { 0: emptyIn(), 1: emptyIn() });
+
+    expect(p0.landingJumpTicks).toBeGreaterThan(0);
+    step(s, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+
+    expect(p0.state).toBe("doubleJumpDash");
+    expect(p0.facing).toBe(1);
+    expect(p0.vx).toBeGreaterThan(0);
+  });
+
+  it("holding a direction walks; double-tapping that direction runs", () => {
+    const walking = makeState();
+    step(walking, { 0: { ...emptyIn(), right: true }, 1: emptyIn() });
+
+    expect(walking.fighters[0].state).toBe("walk");
+    expect(walking.fighters[0].runDirection).toBe(0);
+    expect(walking.fighters[0].vx).toBe(DEFAULT_WALK_SPEED_X);
+
+    const running = makeState();
+    step(running, { 0: { ...emptyIn(), right: true }, 1: emptyIn() });
+    step(running, { 0: emptyIn(), 1: emptyIn() });
+    step(running, { 0: { ...emptyIn(), right: true }, 1: emptyIn() });
+
+    expect(running.fighters[0].state).toBe("run");
+    expect(running.fighters[0].runDirection).toBe(1);
+    expect(running.fighters[0].vx).toBe(DEFAULT_RUN_SPEED_X);
+  });
+
+  it("regular forward jump keeps full height but half dash movement", () => {
+    const s = makeState();
+    const p0 = s.fighters[0];
+
+    step(s, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+
+    expect(p0.state).toBe("jump");
+    expect(p0.airAction).toBe("regularJump");
+    expect(p0.vx).toBe(REGULAR_JUMP_FORWARD_SPEED_X);
+    expect(p0.vheight).toBe(DEFAULT_JUMP_VELOCITY - GRAVITY);
+  });
+
+  it("landing from the forward dash starts a short recovery lockout", () => {
+    const s = makeState();
+    const p0 = s.fighters[0];
+
+    step(s, { 0: { ...emptyIn(), jump: true }, 1: emptyIn() });
+    step(s, { 0: emptyIn(), 1: emptyIn() });
+    while (p0.height > 0 || p0.vheight > 0) step(s, { 0: emptyIn(), 1: emptyIn() });
+    expect(p0.landingJumpTicks).toBe(DOUBLE_JUMP_WINDOW_TICKS);
+
+    step(s, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+    expect(p0.state).toBe("doubleJumpDash");
+    expect(p0.vheight).toBe(DOUBLE_JUMP_DASH_HEIGHT - DOUBLE_JUMP_DASH_GRAVITY);
+
+    while (p0.height > 0 || p0.vheight > 0) step(s, { 0: emptyIn(), 1: emptyIn() });
+    expect(p0.dashRecoveryTicks).toBe(DOUBLE_JUMP_RECOVERY_TICKS);
+
+    step(s, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+    expect(p0.state).toBe("idle");
+    expect(p0.vx).toBe(0);
+    expect(p0.vheight).toBe(0);
+    expect(p0.dashRecoveryTicks).toBe(DOUBLE_JUMP_RECOVERY_TICKS - 1);
+  });
+
+  it("dash hop is 25 percent faster but travels 50 percent farther than a forward jump", () => {
+    const regular = makeState();
+    const pRegular = regular.fighters[0];
+    const regularStartX = pRegular.x;
+    step(regular, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+    const regularSpeed = pRegular.vx;
+    while (pRegular.height > 0 || pRegular.vheight > 0) {
+      step(regular, { 0: { ...emptyIn(), right: true }, 1: emptyIn() });
+    }
+    const regularDistance = pRegular.x - regularStartX;
+
+    const dash = makeState();
+    const pDash = dash.fighters[0];
+    step(dash, { 0: { ...emptyIn(), jump: true }, 1: emptyIn() });
+    step(dash, { 0: emptyIn(), 1: emptyIn() });
+    while (pDash.height > 0 || pDash.vheight > 0) step(dash, { 0: emptyIn(), 1: emptyIn() });
+
+    const dashStartX = pDash.x;
+    step(dash, { 0: { ...emptyIn(), right: true, jump: true }, 1: emptyIn() });
+    const dashSpeed = pDash.vx;
+    while (pDash.height > 0 || pDash.vheight > 0) step(dash, { 0: emptyIn(), 1: emptyIn() });
+    const dashDistance = pDash.x - dashStartX;
+
+    expect(dashSpeed).toBe(DOUBLE_JUMP_DASH_SPEED_X);
+    expect(dashSpeed / regularSpeed).toBeCloseTo(1.25, 5);
+    expect(dashDistance / regularDistance).toBeGreaterThan(1.4);
+    expect(dashDistance / regularDistance).toBeLessThan(1.6);
+  });
+
+  it("attacking during the dash hop uses the stronger aerial attack", () => {
+    const s = makeState();
+    s.fighters[0].x = 400;
+    s.fighters[1].x = 452;
+    s.fighters[0].depth = s.fighters[1].depth = 100;
+
+    const p0 = s.fighters[0];
+    p0.state = "doubleJumpDash";
+    p0.height = 18;
+    p0.vheight = 0;
+    p0.wasGrounded = false;
+    p0.facing = 1;
+
+    step(s, { 0: { ...emptyIn(), punch: true }, 1: emptyIn() });
+    expect(p0.state).toBe("doubleJumpAttack");
+
+    const before = s.fighters[1].health;
+    for (let t = 0; t < 8; t++) step(s, { 0: emptyIn(), 1: emptyIn() });
+    expect(before - s.fighters[1].health).toBe(50);
   });
 });
 
