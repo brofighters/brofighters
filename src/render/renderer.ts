@@ -219,7 +219,10 @@ export class Renderer {
     facing: number,
   ): void {
     const [srcX, srcY, srcW, srcH] = rect;
-    const inset = 2;
+    // No inset: the source frames are clean (baseline lines removed), so crop the
+    // full cell 1:1. A non-zero inset shaved the top of the hair / bottom of the
+    // feet on poses that fill the cell, and added a slight stretch distortion.
+    const inset = 0;
     const cropX = srcX + inset;
     const cropY = srcY + inset;
     const cropW = srcW - inset * 2;

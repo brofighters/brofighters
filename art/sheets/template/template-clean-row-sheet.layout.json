@@ -1,0 +1,825 @@
+{
+  "sourceSheet": "public/sprites/template-sprite.png",
+  "sourceLayout": "art/sheets/template/template-mannequin-64.layout.json",
+  "frameWidth": 96,
+  "frameHeight": 128,
+  "columns": 7,
+  "rows": 21,
+  "width": 672,
+  "height": 2688,
+  "rowOrder": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Turnaround",
+    "Run Stop / Skid",
+    "Jump",
+    "Landing",
+    "Dash Jump",
+    "Punch Combo 1",
+    "Punch Combo 2",
+    "Punch Combo 3",
+    "Dash Attack",
+    "Dash Jump Attack",
+    "Air Hit",
+    "Block / Defend",
+    "Light Hit",
+    "Heavy Hit",
+    "Knockdown / Fall",
+    "Get Up",
+    "Death / KO",
+    "Victory Pose"
+  ],
+  "frames": {
+    "idle0": {
+      "row": "Idle",
+      "source": "idle0",
+      "rect": [
+        0,
+        0,
+        96,
+        128
+      ]
+    },
+    "idle1": {
+      "row": "Idle",
+      "source": "idle1",
+      "rect": [
+        96,
+        0,
+        96,
+        128
+      ]
+    },
+    "idle2": {
+      "row": "Idle",
+      "source": "idle2",
+      "rect": [
+        192,
+        0,
+        96,
+        128
+      ]
+    },
+    "walk0": {
+      "row": "Walk",
+      "source": "walk0",
+      "rect": [
+        0,
+        128,
+        96,
+        128
+      ]
+    },
+    "walk1": {
+      "row": "Walk",
+      "source": "walk1",
+      "rect": [
+        96,
+        128,
+        96,
+        128
+      ]
+    },
+    "walk2": {
+      "row": "Walk",
+      "source": "walk2",
+      "rect": [
+        192,
+        128,
+        96,
+        128
+      ]
+    },
+    "walk3": {
+      "row": "Walk",
+      "source": "walk3",
+      "rect": [
+        288,
+        128,
+        96,
+        128
+      ]
+    },
+    "run0": {
+      "row": "Run",
+      "source": "run0",
+      "rect": [
+        0,
+        256,
+        96,
+        128
+      ]
+    },
+    "run1": {
+      "row": "Run",
+      "source": "run1",
+      "rect": [
+        96,
+        256,
+        96,
+        128
+      ]
+    },
+    "run2": {
+      "row": "Run",
+      "source": "run2",
+      "rect": [
+        192,
+        256,
+        96,
+        128
+      ]
+    },
+    "run3": {
+      "row": "Run",
+      "source": "run3",
+      "rect": [
+        288,
+        256,
+        96,
+        128
+      ]
+    },
+    "run4": {
+      "row": "Run",
+      "source": "run4",
+      "rect": [
+        384,
+        256,
+        96,
+        128
+      ]
+    },
+    "run5": {
+      "row": "Run",
+      "source": "run5",
+      "rect": [
+        480,
+        256,
+        96,
+        128
+      ]
+    },
+    "turn0": {
+      "row": "Turnaround",
+      "source": "idle1",
+      "rect": [
+        0,
+        384,
+        96,
+        128
+      ]
+    },
+    "turn1": {
+      "row": "Turnaround",
+      "source": "idle0",
+      "rect": [
+        96,
+        384,
+        96,
+        128
+      ]
+    },
+    "skid0": {
+      "row": "Run Stop / Skid",
+      "source": "dash0",
+      "rect": [
+        0,
+        512,
+        96,
+        128
+      ]
+    },
+    "skid1": {
+      "row": "Run Stop / Skid",
+      "source": "dash1",
+      "rect": [
+        96,
+        512,
+        96,
+        128
+      ]
+    },
+    "skid2": {
+      "row": "Run Stop / Skid",
+      "source": "dash2",
+      "rect": [
+        192,
+        512,
+        96,
+        128
+      ]
+    },
+    "jumpStart": {
+      "row": "Jump",
+      "source": "jump0",
+      "rect": [
+        0,
+        640,
+        96,
+        128
+      ]
+    },
+    "jumpRise": {
+      "row": "Jump",
+      "source": "jump1",
+      "rect": [
+        96,
+        640,
+        96,
+        128
+      ]
+    },
+    "jumpPeak": {
+      "row": "Jump",
+      "source": "jump2",
+      "rect": [
+        192,
+        640,
+        96,
+        128
+      ]
+    },
+    "jumpFall": {
+      "row": "Jump",
+      "source": "jump3",
+      "rect": [
+        288,
+        640,
+        96,
+        128
+      ]
+    },
+    "land0": {
+      "row": "Landing",
+      "source": "dash3",
+      "rect": [
+        0,
+        768,
+        96,
+        128
+      ]
+    },
+    "land1": {
+      "row": "Landing",
+      "source": "idle0",
+      "rect": [
+        96,
+        768,
+        96,
+        128
+      ]
+    },
+    "dashJump0": {
+      "row": "Dash Jump",
+      "source": "dash0",
+      "rect": [
+        0,
+        896,
+        96,
+        128
+      ]
+    },
+    "dashJump1": {
+      "row": "Dash Jump",
+      "source": "dash1",
+      "rect": [
+        96,
+        896,
+        96,
+        128
+      ]
+    },
+    "dashJump2": {
+      "row": "Dash Jump",
+      "source": "dash2",
+      "rect": [
+        192,
+        896,
+        96,
+        128
+      ]
+    },
+    "dashJump3": {
+      "row": "Dash Jump",
+      "source": "dash3",
+      "rect": [
+        288,
+        896,
+        96,
+        128
+      ]
+    },
+    "punch1_0": {
+      "row": "Punch Combo 1",
+      "source": "atk1_0",
+      "rect": [
+        0,
+        1024,
+        96,
+        128
+      ]
+    },
+    "punch1_1": {
+      "row": "Punch Combo 1",
+      "source": "atk1_1",
+      "rect": [
+        96,
+        1024,
+        96,
+        128
+      ]
+    },
+    "punch1_2": {
+      "row": "Punch Combo 1",
+      "source": "atk1_2",
+      "rect": [
+        192,
+        1024,
+        96,
+        128
+      ]
+    },
+    "punch2_0": {
+      "row": "Punch Combo 2",
+      "source": "atk2_0",
+      "rect": [
+        0,
+        1152,
+        96,
+        128
+      ]
+    },
+    "punch2_1": {
+      "row": "Punch Combo 2",
+      "source": "atk2_1",
+      "rect": [
+        96,
+        1152,
+        96,
+        128
+      ]
+    },
+    "punch2_2": {
+      "row": "Punch Combo 2",
+      "source": "atk2_2",
+      "rect": [
+        192,
+        1152,
+        96,
+        128
+      ]
+    },
+    "punch3_0": {
+      "row": "Punch Combo 3",
+      "source": "atk3_0",
+      "rect": [
+        0,
+        1280,
+        96,
+        128
+      ]
+    },
+    "punch3_1": {
+      "row": "Punch Combo 3",
+      "source": "atk3_1",
+      "rect": [
+        96,
+        1280,
+        96,
+        128
+      ]
+    },
+    "punch3_2": {
+      "row": "Punch Combo 3",
+      "source": "atk3_2",
+      "rect": [
+        192,
+        1280,
+        96,
+        128
+      ]
+    },
+    "punch3_3": {
+      "row": "Punch Combo 3",
+      "source": "atk3_3",
+      "rect": [
+        288,
+        1280,
+        96,
+        128
+      ]
+    },
+    "punch3_4": {
+      "row": "Punch Combo 3",
+      "source": "atk3_4",
+      "rect": [
+        384,
+        1280,
+        96,
+        128
+      ]
+    },
+    "punch3_5": {
+      "row": "Punch Combo 3",
+      "source": "atk3_5",
+      "rect": [
+        480,
+        1280,
+        96,
+        128
+      ]
+    },
+    "dashAttack0": {
+      "row": "Dash Attack",
+      "source": "dashAtk0",
+      "rect": [
+        0,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashAttack1": {
+      "row": "Dash Attack",
+      "source": "dashAtk1",
+      "rect": [
+        96,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashAttack2": {
+      "row": "Dash Attack",
+      "source": "dashAtk2",
+      "rect": [
+        192,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashAttack3": {
+      "row": "Dash Attack",
+      "source": "dashAtk3",
+      "rect": [
+        288,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashAttack4": {
+      "row": "Dash Attack",
+      "source": "dashAtk4",
+      "rect": [
+        384,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashAttack5": {
+      "row": "Dash Attack",
+      "source": "dashAtk5",
+      "rect": [
+        480,
+        1408,
+        96,
+        128
+      ]
+    },
+    "dashJumpAttack0": {
+      "row": "Dash Jump Attack",
+      "source": "jumpAtk0",
+      "rect": [
+        0,
+        1536,
+        96,
+        128
+      ]
+    },
+    "dashJumpAttack1": {
+      "row": "Dash Jump Attack",
+      "source": "jumpAtk1",
+      "rect": [
+        96,
+        1536,
+        96,
+        128
+      ]
+    },
+    "dashJumpAttack2": {
+      "row": "Dash Jump Attack",
+      "source": "jumpAtk2",
+      "rect": [
+        192,
+        1536,
+        96,
+        128
+      ]
+    },
+    "dashJumpAttack3": {
+      "row": "Dash Jump Attack",
+      "source": "dashAtk4",
+      "rect": [
+        288,
+        1536,
+        96,
+        128
+      ]
+    },
+    "airHit0": {
+      "row": "Air Hit",
+      "source": "hitHeavy1",
+      "rect": [
+        0,
+        1664,
+        96,
+        128
+      ]
+    },
+    "airHit1": {
+      "row": "Air Hit",
+      "source": "hitHeavy2",
+      "rect": [
+        96,
+        1664,
+        96,
+        128
+      ]
+    },
+    "blockEnter": {
+      "row": "Block / Defend",
+      "source": "blockEnter",
+      "rect": [
+        0,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockHold": {
+      "row": "Block / Defend",
+      "source": "blockHold",
+      "rect": [
+        96,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockHit0": {
+      "row": "Block / Defend",
+      "source": "blockHit0",
+      "rect": [
+        192,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockHit1": {
+      "row": "Block / Defend",
+      "source": "blockHit1",
+      "rect": [
+        288,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockBreak0": {
+      "row": "Block / Defend",
+      "source": "blockBreak0",
+      "rect": [
+        384,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockBreak1": {
+      "row": "Block / Defend",
+      "source": "blockBreak1",
+      "rect": [
+        480,
+        1792,
+        96,
+        128
+      ]
+    },
+    "blockBreak2": {
+      "row": "Block / Defend",
+      "source": "blockBreak2",
+      "rect": [
+        576,
+        1792,
+        96,
+        128
+      ]
+    },
+    "hitLight0": {
+      "row": "Light Hit",
+      "source": "hitLight0",
+      "rect": [
+        0,
+        1920,
+        96,
+        128
+      ]
+    },
+    "hitLight1": {
+      "row": "Light Hit",
+      "source": "hitLight1",
+      "rect": [
+        96,
+        1920,
+        96,
+        128
+      ]
+    },
+    "hitHeavy0": {
+      "row": "Heavy Hit",
+      "source": "hitHeavy0",
+      "rect": [
+        0,
+        2048,
+        96,
+        128
+      ]
+    },
+    "hitHeavy1": {
+      "row": "Heavy Hit",
+      "source": "hitHeavy1",
+      "rect": [
+        96,
+        2048,
+        96,
+        128
+      ]
+    },
+    "hitHeavy2": {
+      "row": "Heavy Hit",
+      "source": "hitHeavy2",
+      "rect": [
+        192,
+        2048,
+        96,
+        128
+      ]
+    },
+    "knockdown0": {
+      "row": "Knockdown / Fall",
+      "source": "flyBack0",
+      "rect": [
+        0,
+        2176,
+        96,
+        128
+      ]
+    },
+    "knockdown1": {
+      "row": "Knockdown / Fall",
+      "source": "flyBack1",
+      "rect": [
+        96,
+        2176,
+        96,
+        128
+      ]
+    },
+    "knockdown2": {
+      "row": "Knockdown / Fall",
+      "source": "flyBack2",
+      "rect": [
+        192,
+        2176,
+        96,
+        128
+      ]
+    },
+    "knockdownGround": {
+      "row": "Knockdown / Fall",
+      "source": "flyBack3",
+      "rect": [
+        288,
+        2176,
+        96,
+        128
+      ]
+    },
+    "getUp0": {
+      "row": "Get Up",
+      "source": "flyBack3",
+      "rect": [
+        0,
+        2304,
+        96,
+        128
+      ]
+    },
+    "getUp1": {
+      "row": "Get Up",
+      "source": "blockBreak3",
+      "rect": [
+        96,
+        2304,
+        96,
+        128
+      ]
+    },
+    "getUp2": {
+      "row": "Get Up",
+      "source": "blockHold",
+      "rect": [
+        192,
+        2304,
+        96,
+        128
+      ]
+    },
+    "koFall0": {
+      "row": "Death / KO",
+      "source": "flyBack0",
+      "rect": [
+        0,
+        2432,
+        96,
+        128
+      ]
+    },
+    "koFall1": {
+      "row": "Death / KO",
+      "source": "flyBack1",
+      "rect": [
+        96,
+        2432,
+        96,
+        128
+      ]
+    },
+    "koGround": {
+      "row": "Death / KO",
+      "source": "flyBack3",
+      "rect": [
+        192,
+        2432,
+        96,
+        128
+      ]
+    },
+    "koDead": {
+      "row": "Death / KO",
+      "source": "koDead",
+      "rect": [
+        288,
+        2432,
+        96,
+        128
+      ]
+    },
+    "victory0": {
+      "row": "Victory Pose",
+      "source": "idle0",
+      "rect": [
+        0,
+        2560,
+        96,
+        128
+      ]
+    },
+    "victory1": {
+      "row": "Victory Pose",
+      "source": "blockHold",
+      "rect": [
+        96,
+        2560,
+        96,
+        128
+      ]
+    },
+    "victory2": {
+      "row": "Victory Pose",
+      "source": "atk1_1",
+      "rect": [
+        192,
+        2560,
+        96,
+        128
+      ]
+    },
+    "victoryLoop": {
+      "row": "Victory Pose",
+      "source": "idle1",
+      "rect": [
+        288,
+        2560,
+        96,
+        128
+      ]
+    }
+  }
+}

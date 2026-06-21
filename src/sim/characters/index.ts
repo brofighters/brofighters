@@ -6,13 +6,11 @@
 
 import type { CharacterDef } from "./types";
 import brawler from "./brawler.json";
-import radioYap from "./radio-yap.json";
 
 // JSON imports widen tuples (e.g. spriteRect) to number[]; the data is authored
 // to match CharacterDef, so cast through unknown.
 export const CHARACTERS: Record<string, CharacterDef> = {
   [brawler.id]: brawler as unknown as CharacterDef,
-  [radioYap.id]: radioYap as unknown as CharacterDef,
 };
 
 export const CHARACTER_LIST: CharacterDef[] = Object.values(CHARACTERS);

@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Template Character Clean Row Sheet Preview</title>
+<style>
+body { margin: 24px; background: #151923; color: #e8eefc; font-family: system-ui, sans-serif; }
+h1 { margin: 0 0 8px; }
+p { color: #aeb9cc; }
+h2 { margin: 26px 0 8px; font-size: 15px; color: #d8ecfb; }
+.row { display: grid; gap: 10px; align-items: start; }
+figure { margin: 0; width: 96px; }
+.cell {
+  width: 96px;
+  height: 128px;
+  image-rendering: pixelated;
+  background-image:
+    linear-gradient(45deg, #273041 25%, transparent 25%),
+    linear-gradient(-45deg, #273041 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #273041 75%),
+    linear-gradient(-45deg, transparent 75%, #273041 75%),
+    url("./template-clean-row-sheet.png");
+  background-size: 16px 16px, 16px 16px, 16px 16px, 16px 16px, 672px 2688px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0, var(--sprite-pos);
+  background-color: #1b2230;
+}
+figcaption { margin-top: 4px; font-size: 10px; color: #aeb9cc; overflow-wrap: anywhere; min-height: 38px; }
+small { display: block; color: #6f7b91; }
+</style>
+</head>
+<body>
+<h1>Template Character Clean Row Sheet</h1>
+<p>Repacked from public/sprites/template-sprite.png. The PNG itself has no labels, grid, borders, or baked background.</p>
+<h2>Idle</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -0px"></div><figcaption>idle0<small> from idle0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -0px"></div><figcaption>idle1<small> from idle1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -0px"></div><figcaption>idle2<small> from idle2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -0px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -0px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -0px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -0px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Walk</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -128px"></div><figcaption>walk0<small> from walk0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -128px"></div><figcaption>walk1<small> from walk1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -128px"></div><figcaption>walk2<small> from walk2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -128px"></div><figcaption>walk3<small> from walk3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -128px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -128px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -128px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Run</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -256px"></div><figcaption>run0<small> from run0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -256px"></div><figcaption>run1<small> from run1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -256px"></div><figcaption>run2<small> from run2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -256px"></div><figcaption>run3<small> from run3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -256px"></div><figcaption>run4<small> from run4</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -256px"></div><figcaption>run5<small> from run5</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -256px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Turnaround</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -384px"></div><figcaption>turn0<small> from idle1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -384px"></div><figcaption>turn1<small> from idle0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -384px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -384px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -384px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -384px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -384px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Run Stop / Skid</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -512px"></div><figcaption>skid0<small> from dash0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -512px"></div><figcaption>skid1<small> from dash1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -512px"></div><figcaption>skid2<small> from dash2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -512px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -512px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -512px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -512px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Jump</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -640px"></div><figcaption>jumpStart<small> from jump0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -640px"></div><figcaption>jumpRise<small> from jump1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -640px"></div><figcaption>jumpPeak<small> from jump2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -640px"></div><figcaption>jumpFall<small> from jump3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -640px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -640px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -640px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Landing</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -768px"></div><figcaption>land0<small> from dash3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -768px"></div><figcaption>land1<small> from idle0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -768px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -768px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -768px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -768px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -768px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Dash Jump</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -896px"></div><figcaption>dashJump0<small> from dash0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -896px"></div><figcaption>dashJump1<small> from dash1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -896px"></div><figcaption>dashJump2<small> from dash2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -896px"></div><figcaption>dashJump3<small> from dash3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -896px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -896px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -896px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Punch Combo 1</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1024px"></div><figcaption>punch1_0<small> from atk1_0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1024px"></div><figcaption>punch1_1<small> from atk1_1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1024px"></div><figcaption>punch1_2<small> from atk1_2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1024px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1024px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1024px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1024px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Punch Combo 2</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1152px"></div><figcaption>punch2_0<small> from atk2_0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1152px"></div><figcaption>punch2_1<small> from atk2_1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1152px"></div><figcaption>punch2_2<small> from atk2_2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1152px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1152px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1152px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1152px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Punch Combo 3</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1280px"></div><figcaption>punch3_0<small> from atk3_0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1280px"></div><figcaption>punch3_1<small> from atk3_1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1280px"></div><figcaption>punch3_2<small> from atk3_2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1280px"></div><figcaption>punch3_3<small> from atk3_3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1280px"></div><figcaption>punch3_4<small> from atk3_4</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1280px"></div><figcaption>punch3_5<small> from atk3_5</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1280px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Dash Attack</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1408px"></div><figcaption>dashAttack0<small> from dashAtk0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1408px"></div><figcaption>dashAttack1<small> from dashAtk1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1408px"></div><figcaption>dashAttack2<small> from dashAtk2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1408px"></div><figcaption>dashAttack3<small> from dashAtk3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1408px"></div><figcaption>dashAttack4<small> from dashAtk4</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1408px"></div><figcaption>dashAttack5<small> from dashAtk5</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1408px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Dash Jump Attack</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1536px"></div><figcaption>dashJumpAttack0<small> from jumpAtk0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1536px"></div><figcaption>dashJumpAttack1<small> from jumpAtk1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1536px"></div><figcaption>dashJumpAttack2<small> from jumpAtk2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1536px"></div><figcaption>dashJumpAttack3<small> from dashAtk4</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1536px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1536px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1536px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Air Hit</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1664px"></div><figcaption>airHit0<small> from hitHeavy1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1664px"></div><figcaption>airHit1<small> from hitHeavy2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1664px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1664px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1664px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1664px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1664px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Block / Defend</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1792px"></div><figcaption>blockEnter<small> from blockEnter</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1792px"></div><figcaption>blockHold<small> from blockHold</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1792px"></div><figcaption>blockHit0<small> from blockHit0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1792px"></div><figcaption>blockHit1<small> from blockHit1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1792px"></div><figcaption>blockBreak0<small> from blockBreak0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1792px"></div><figcaption>blockBreak1<small> from blockBreak1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1792px"></div><figcaption>blockBreak2<small> from blockBreak2</small></figcaption></figure>
+</div>
+<h2>Light Hit</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -1920px"></div><figcaption>hitLight0<small> from hitLight0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -1920px"></div><figcaption>hitLight1<small> from hitLight1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -1920px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -1920px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -1920px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -1920px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -1920px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Heavy Hit</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -2048px"></div><figcaption>hitHeavy0<small> from hitHeavy0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -2048px"></div><figcaption>hitHeavy1<small> from hitHeavy1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -2048px"></div><figcaption>hitHeavy2<small> from hitHeavy2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -2048px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -2048px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -2048px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -2048px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Knockdown / Fall</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -2176px"></div><figcaption>knockdown0<small> from flyBack0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -2176px"></div><figcaption>knockdown1<small> from flyBack1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -2176px"></div><figcaption>knockdown2<small> from flyBack2</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -2176px"></div><figcaption>knockdownGround<small> from flyBack3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -2176px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -2176px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -2176px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Get Up</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -2304px"></div><figcaption>getUp0<small> from flyBack3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -2304px"></div><figcaption>getUp1<small> from blockBreak3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -2304px"></div><figcaption>getUp2<small> from blockHold</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -2304px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -2304px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -2304px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -2304px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Death / KO</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -2432px"></div><figcaption>koFall0<small> from flyBack0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -2432px"></div><figcaption>koFall1<small> from flyBack1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -2432px"></div><figcaption>koGround<small> from flyBack3</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -2432px"></div><figcaption>koDead<small> from koDead</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -2432px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -2432px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -2432px"></div><figcaption><small></small></figcaption></figure>
+</div>
+<h2>Victory Pose</h2>
+<div class="row" style="grid-template-columns: repeat(7, 96px)">
+<figure><div class="cell" style="--sprite-pos: -0px -2560px"></div><figcaption>victory0<small> from idle0</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -96px -2560px"></div><figcaption>victory1<small> from blockHold</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -192px -2560px"></div><figcaption>victory2<small> from atk1_1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -288px -2560px"></div><figcaption>victoryLoop<small> from idle1</small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -384px -2560px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -480px -2560px"></div><figcaption><small></small></figcaption></figure>
+<figure><div class="cell" style="--sprite-pos: -576px -2560px"></div><figcaption><small></small></figcaption></figure>
+</div>
+</body>
+</html>
