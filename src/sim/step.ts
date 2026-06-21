@@ -24,6 +24,7 @@ import {
   DEFAULT_WALK_SPEED_X,
   GRAVITY,
   GROUND_HEIGHT,
+  HEAVY_HIT_KNOCKDOWN_DAMAGE,
   HITSTOP_TICKS,
   KNOCKDOWN_GET_UP_TICKS,
   REGULAR_JUMP_FORWARD_SPEED_DEPTH,
@@ -628,7 +629,7 @@ function applyHit(state: GameState, atk: Fighter, vic: Fighter, hb: HitBox): voi
     return;
   }
 
-  if (hb.knockdown) {
+  if (hb.knockdown || damage > HEAVY_HIT_KNOCKDOWN_DAMAGE) {
     knockDown(vic, vicChar, atk.facing, hb);
   } else {
     vic.vx += atk.facing * hb.knockbackX;

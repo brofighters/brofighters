@@ -33,6 +33,7 @@ Edit `src/sim/constants.ts` for values shared by everyone:
 | `MAX_HEALTH` | Fallback full HP. |
 | `HITSTOP_TICKS` | Brief freeze when a hit connects. |
 | `KNOCKDOWN_GET_UP_TICKS` | How long a knocked-down fighter stays down. |
+| `HEAVY_HIT_KNOCKDOWN_DAMAGE` | Single-hit damage must be greater than this to force knockdown. |
 
 The sim runs at 60 ticks per second, so `6` ticks is `0.1` seconds and `12` ticks is `0.2` seconds.
 
@@ -75,6 +76,9 @@ Attack tuning lives on each active `hitbox` inside `frames`.
 | `knockbackX` | Horizontal pushback. |
 | `knockbackH` | Upward launch. |
 | `knockdown` | Whether the hit knocks the victim down. |
+
+Any unblocked single hit with `damage` greater than `HEAVY_HIT_KNOCKDOWN_DAMAGE`
+also knocks the victim down, even if `knockdown` is not set on the hitbox.
 
 Frame timing also affects balance:
 

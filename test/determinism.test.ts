@@ -16,6 +16,7 @@ import {
   DOUBLE_JUMP_RECOVERY_TICKS,
   DOUBLE_JUMP_WINDOW_TICKS,
   GRAVITY,
+  HEAVY_HIT_KNOCKDOWN_DAMAGE,
   MAX_HEALTH,
   REGULAR_JUMP_FORWARD_SPEED_X,
   centeredVersusSpawns,
@@ -160,6 +161,31 @@ describe("basic combat", () => {
     const blocked = damageOver(true);
     expect(blocked).toBeGreaterThan(0);
     expect(blocked).toBeLessThan(unblocked);
+  });
+
+  it("a single hit over the heavy threshold knocks the victim down", () => {
+    const s = makeState();
+    s.fighters[0].x = 400;
+    s.fighters[1].x = 458;
+    s.fighters[0].depth = s.fighters[1].depth = 100;
+
+    const activeFrame = CHARACTERS.brawler.frames.find((frame) => frame.id === "p1_1");
+    if (!activeFrame?.hitboxes?.[0]) throw new Error("test fixture missing punch hitbox");
+    const oldDamage = activeFrame.hitboxes[0].damage;
+    activeFrame.hitboxes[0].damage = HEAVY_HIT_KNOCKDOWN_DAMAGE + 1;
+
+    try {
+      for (let t = 0; t < 12; t++) {
+        const inputs: InputMap = { 0: emptyIn(), 1: emptyIn() };
+        if (t === 0) inputs[0].punch = true;
+        step(s, inputs);
+      }
+    } finally {
+      activeFrame.hitboxes[0].damage = oldDamage;
+    }
+
+    expect(s.fighters[1].state).toBe("knockdown");
+    expect(s.fighters[1].health).toBe(MAX_HEALTH - HEAVY_HIT_KNOCKDOWN_DAMAGE - 1);
   });
 
   it("ends the round when only one fighter remains", () => {

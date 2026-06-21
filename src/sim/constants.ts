@@ -40,6 +40,7 @@ export const DOUBLE_JUMP_DASH_DISTANCE_MULTIPLIER = 1.5;
 /** Combat tuning. */
 export const HITSTOP_TICKS = 3; // brief freeze on both fighters when a hit lands
 export const KNOCKDOWN_GET_UP_TICKS = 40;
+export const HEAVY_HIT_KNOCKDOWN_DAMAGE = 50;
 export const MAX_HEALTH = 500;
 
 /** Command-buffer window: how long a discrete input token lives for combo/special matching. */
