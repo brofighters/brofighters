@@ -17,15 +17,17 @@ export interface KeyLayout {
   block: string;
 }
 
+export type KeyAction = Exclude<keyof KeyLayout, "kick">;
+
 export const LAYOUT_P1: KeyLayout = {
   left: "KeyA",
   right: "KeyD",
   up: "KeyW",
   down: "KeyS",
-  jump: "Space",
-  punch: "KeyJ",
-  kick: "KeyK",
-  block: "KeyL",
+  jump: "KeyG",
+  punch: "KeyF",
+  kick: "KeyF",
+  block: "KeyH",
 };
 
 export const LAYOUT_P2: KeyLayout = {
@@ -33,11 +35,32 @@ export const LAYOUT_P2: KeyLayout = {
   right: "ArrowRight",
   up: "ArrowUp",
   down: "ArrowDown",
-  jump: "Numpad0",
+  jump: "Numpad2",
   punch: "Numpad1",
-  kick: "Numpad2",
+  kick: "Numpad1",
   block: "Numpad3",
 };
+
+export interface KeyboardConfig {
+  p1: KeyLayout;
+  p2: KeyLayout;
+}
+
+export const DEFAULT_KEYBOARD_CONFIG: KeyboardConfig = {
+  p1: { ...LAYOUT_P1 },
+  p2: { ...LAYOUT_P2 },
+};
+
+export function cloneLayout(layout: KeyLayout): KeyLayout {
+  return { ...layout };
+}
+
+export function keyLabel(code: string): string {
+  if (code.startsWith("Key")) return code.slice(3);
+  if (code.startsWith("Digit")) return code.slice(5);
+  if (code.startsWith("Numpad")) return `Numpad ${code.slice(6)}`;
+  return KEY_LABELS[code] ?? code;
+}
 
 export class Keyboard {
   private pressed = new Set<string>();
@@ -74,3 +97,11 @@ const PREVENT_DEFAULT = new Set([
   "ArrowUp",
   "ArrowDown",
 ]);
+
+const KEY_LABELS: Record<string, string> = {
+  Space: "Space",
+  ArrowLeft: "Left Arrow",
+  ArrowRight: "Right Arrow",
+  ArrowUp: "Up Arrow",
+  ArrowDown: "Down Arrow",
+};

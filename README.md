@@ -20,7 +20,8 @@ npm run dev        # opens http://localhost:5173
 - **Keyboard P1:** `WASD` move · `J` punch · `L` block · `Space` jump
 - **Keyboard P2:** `Arrows` move · `Numpad1` punch · `Numpad3` block · `Numpad0` jump
 - **Gamepads:** auto-join. Left stick / d-pad move · `A` jump · `X` punch · `Y` block.
-- **Special (Brawler):** `block + back + jump` → Rising Fist (knockdown).
+- **Special (Template Guy / Radio Yap):** `block + back + jump` → Rising Fist
+  (knockdown).
 - `F1` / `` ` `` toggles hit/hurtbox debug overlay. `Esc` returns to the join screen.
 
 ## Scripts
@@ -77,6 +78,6 @@ test/
 
 **Milestone 1 — complete.** Scaffold, deterministic `step()` core, per-fighter state
 machine, frame-driven animation, hitbox/hurtbox collision + hit resolution, gamepad +
-keyboard input for N players, one data-driven reference character (`Brawler`) with
-punch / 3-hit combo / special, a join stub, and round flow (health to zero =
-round over → auto-reset).
+keyboard input for N players, data-driven reference characters (`Template Guy` and
+`Radio Yap`) with punch / 3-hit combo / special, menus, and round flow (health to
+zero = round over → auto-reset).

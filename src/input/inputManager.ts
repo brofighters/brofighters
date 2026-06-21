@@ -8,7 +8,13 @@
 
 import type { InputMap, InputState } from "../sim/input";
 import { connectedGamepadIndices, sampleGamepad } from "./gamepad";
-import { Keyboard, LAYOUT_P1, LAYOUT_P2, type KeyLayout } from "./keyboard";
+import {
+  Keyboard,
+  cloneLayout,
+  DEFAULT_KEYBOARD_CONFIG,
+  type KeyboardConfig,
+  type KeyLayout,
+} from "./keyboard";
 
 export type PlayerKind = "keyboard" | "gamepad";
 
@@ -22,14 +28,25 @@ export interface PlayerSource {
 
 export class InputManager {
   private keyboard = new Keyboard();
+  private layouts: KeyboardConfig = {
+    p1: cloneLayout(DEFAULT_KEYBOARD_CONFIG.p1),
+    p2: cloneLayout(DEFAULT_KEYBOARD_CONFIG.p2),
+  };
+
+  setKeyboardConfig(config: KeyboardConfig): void {
+    this.layouts = {
+      p1: cloneLayout(config.p1),
+      p2: cloneLayout(config.p2),
+    };
+  }
 
   /** All currently usable input sources, ordered deterministically.
    * Two keyboard layouts are always offered for dev/couch testing; each
    * connected gamepad adds another player. */
   listPlayers(): PlayerSource[] {
     const players: PlayerSource[] = [
-      this.kbPlayer(0, "Keyboard (WASD)", LAYOUT_P1),
-      this.kbPlayer(1, "Keyboard (Arrows)", LAYOUT_P2),
+      this.kbPlayer(0, "Player 1 Keyboard", this.layouts.p1),
+      this.kbPlayer(1, "Player 2 Keyboard", this.layouts.p2),
     ];
     for (const idx of connectedGamepadIndices()) {
       players.push({

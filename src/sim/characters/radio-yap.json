@@ -1,7 +1,7 @@
 {
-  "id": "brawler",
-  "name": "Template Guy",
-  "portrait": "/assets/icons/template-guy-cutout.png",
+  "id": "radio-yap",
+  "name": "Radio Yap",
+  "portrait": "/assets/icons/gamma-radiologist-cutout.png",
   "spriteSheet": null,
   "body": { "w": 22, "d": 16, "h": 58 },
   "walkSpeedX": 4.2,

@@ -1,13 +1,10 @@
 /**
- * Client entry point. Owns the fixed-timestep loop and the sim <-> render <->
- * input wiring. The simulation advances at a FIXED 60 Hz independent of render
- * framerate; the renderer interpolates between ticks for smoothness.
- *
- * Flow: a bare "join" screen (the character-select stub — one character for
- * now) -> a match -> round ends at health 0 -> auto-reset -> repeat.
+ * Client entry point. Owns menu flow, input wiring, and the fixed-timestep loop.
+ * The simulation still advances only through step(inputs) at a fixed 60 Hz.
  */
 
 import {
+  ARENA,
   CHARACTER_LIST,
   CHARACTERS,
   TICK_DT,
@@ -19,20 +16,23 @@ import {
   type SpawnConfig,
 } from "./sim/index";
 import { InputManager, type PlayerSource } from "./input/inputManager";
+import {
+  DEFAULT_KEYBOARD_CONFIG,
+  cloneLayout,
+  keyLabel,
+  type KeyAction,
+  type KeyboardConfig,
+} from "./input/keyboard";
 import { Renderer, type RenderTransform, type PlayerView } from "./render/renderer";
 
-const PLAYER_COLORS = [
-  "#e85d5d",
-  "#5da9e8",
-  "#6fd06f",
-  "#e8c45d",
-  "#c47de8",
-  "#5de8c4",
-  "#e88a4d",
-  "#9d9de8",
-  "#e85da9",
-  "#a0d04d",
-];
+const PLAYER_COLORS = ["#e85d5d", "#5da9e8"];
+const KEY_CONFIG_STORAGE = "bro-fighters-key-config-v1";
+const W = 960;
+const H = 540;
+
+type Screen = "mainMenu" | "keyConfig" | "characterSelect" | "arenaSelect" | "play";
+type UiButton = { id: string; label: string; x: number; y: number; w: number; h: number };
+type ConfigField = { player: "p1" | "p2"; action: KeyAction };
 
 interface RosterEntry {
   source: PlayerSource;
@@ -40,118 +40,376 @@ interface RosterEntry {
   color: string;
 }
 
+interface ArenaOption {
+  id: string;
+  name: string;
+  imagePath: string;
+}
+
+const ARENAS: ArenaOption[] = [
+  {
+    id: "raffles-institution",
+    name: "Raffles Institution",
+    imagePath: "/assets/arenas/raffles-institution.png",
+  },
+];
+
+const ACTION_ROWS: { action: KeyAction; label: string }[] = [
+  { action: "up", label: "Up" },
+  { action: "down", label: "Down" },
+  { action: "left", label: "Left" },
+  { action: "right", label: "Right" },
+  { action: "punch", label: "Attack" },
+  { action: "jump", label: "Jump" },
+  { action: "block", label: "Defend" },
+];
+
 const canvas = document.getElementById("game") as HTMLCanvasElement;
 const renderer = new Renderer(canvas);
 const input = new InputManager();
+const ctx = canvas.getContext("2d")!;
 
-let mode: "select" | "play" = "select";
+let screen: Screen = "mainMenu";
+let buttons: UiButton[] = [];
 let roster: RosterEntry[] = [];
 let spawns: SpawnConfig[] = [];
 let state: GameState | null = null;
 let debug = false;
-
-// Interpolation snapshots (previous tick transforms).
 let prevTransforms = new Map<number, RenderTransform>();
+let keyConfig = loadKeyConfig();
+let draftKeyConfig = cloneConfig(keyConfig);
+let awaitingKey: ConfigField | null = null;
+let selectedCharacterIndex = 0;
+let selectedArenaIndex = 0;
+let arenaImage: HTMLImageElement | null = null;
+const characterPortraits = new Map<string, HTMLImageElement>();
 
-window.addEventListener("keydown", (e) => {
-  if (e.code === "F1" || e.code === "Backquote") debug = !debug;
-  if (e.code === "Escape" && mode === "play") backToSelect();
-});
+input.setKeyboardConfig(keyConfig);
+loadImages();
 
-// --- join / character select stub -----------------------------------------
+window.addEventListener("keydown", handleKeyDown);
+canvas.addEventListener("click", handleClick);
 
-function joinedView(): PlayerView[] {
-  return roster.map((r) => ({ id: r.source.id, label: r.source.label, color: r.color }));
+function loadImages(): void {
+  arenaImage = new Image();
+  arenaImage.src = ARENAS[0].imagePath;
+
+  for (const character of CHARACTER_LIST) {
+    if (!character.portrait) continue;
+    const portrait = new Image();
+    portrait.src = character.portrait;
+    characterPortraits.set(character.id, portrait);
+  }
 }
 
-function updateSelect(): void {
-  const available = input.listPlayers();
-
-  // A source taps jump (rising edge) to join; taps block to leave.
-  for (const src of available) {
-    const cur = src.sample();
-    const prev = selectPrev.get(src.id);
-    const joined = roster.find((r) => r.source.id === src.id);
-    if (cur.jump && !prev?.jump && !joined) {
-      roster.push({
-        source: src,
-        characterId: CHARACTER_LIST[0].id,
-        color: PLAYER_COLORS[roster.length % PLAYER_COLORS.length],
-      });
-    }
-    if (cur.block && !prev?.block && joined) {
-      roster = roster.filter((r) => r.source.id !== src.id);
-    }
-    selectPrev.set(src.id, cur);
-  }
-  // Drop roster entries whose gamepad vanished.
-  const ids = new Set(available.map((s) => s.id));
-  roster = roster.filter((r) => ids.has(r.source.id));
-
-  // Any joined player tapping punch starts the match (needs >= 2 fighters).
-  if (roster.length >= 2) {
-    for (const r of roster) {
-      const cur = r.source.sample();
-      const prev = startPrev.get(r.source.id);
-      if (cur.punch && !prev?.punch) startMatch();
-      startPrev.set(r.source.id, cur);
-    }
+function handleKeyDown(e: KeyboardEvent): void {
+  if (e.code === "F1" || e.code === "Backquote") {
+    debug = !debug;
+    e.preventDefault();
+    return;
   }
 
-  drawSelect(available);
+  if (awaitingKey) {
+    e.preventDefault();
+    if (e.code !== "Escape") setDraftKey(awaitingKey, e.code);
+    awaitingKey = null;
+    return;
+  }
+
+  if (e.code === "Escape") {
+    if (screen === "play") backToMainMenu();
+    else if (screen !== "mainMenu") screen = "mainMenu";
+  }
+
+  if (screen === "mainMenu") {
+    if (e.code === "Enter") goToCharacterSelect();
+    if (e.code === "KeyC") goToKeyConfig();
+  } else if (screen === "keyConfig") {
+    if (e.code === "Enter") saveKeyConfig();
+  } else if (screen === "characterSelect") {
+    if (e.code === "ArrowLeft") selectCharacter(-1);
+    if (e.code === "ArrowRight") selectCharacter(1);
+    if (e.code === "Enter" || e.code === "KeyF" || e.code === keyConfig.p1.punch) {
+      screen = "arenaSelect";
+    }
+  } else if (screen === "arenaSelect") {
+    if (e.code === "ArrowLeft") selectArena(-1);
+    if (e.code === "ArrowRight") selectArena(1);
+    if (e.code === "Enter" || e.code === "KeyF" || e.code === keyConfig.p1.punch) startMatch();
+  }
 }
 
-const selectPrev = new Map<number, ReturnType<PlayerSource["sample"]>>();
-const startPrev = new Map<number, ReturnType<PlayerSource["sample"]>>();
+function handleClick(e: MouseEvent): void {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
+  const hit = buttons.find((b) => x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h);
+  if (!hit) return;
 
-function drawSelect(available: PlayerSource[]): void {
-  const ctx = canvas.getContext("2d")!;
-  ctx.fillStyle = "#16161f";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#e6e6f0";
-  ctx.textAlign = "center";
+  if (hit.id === "start") goToCharacterSelect();
+  else if (hit.id === "keys") goToKeyConfig();
+  else if (hit.id === "back") screen = "mainMenu";
+  else if (hit.id === "saveKeys") saveKeyConfig();
+  else if (hit.id === "resetKeys") {
+    draftKeyConfig = cloneConfig(DEFAULT_KEYBOARD_CONFIG);
+    input.setKeyboardConfig(draftKeyConfig);
+  } else if (hit.id.startsWith("bind:")) {
+    const [, player, action] = hit.id.split(":");
+    awaitingKey = { player: player as "p1" | "p2", action: action as KeyAction };
+  } else if (hit.id === "charLeft") selectCharacter(-1);
+  else if (hit.id === "charRight") selectCharacter(1);
+  else if (hit.id === "chooseCharacter") screen = "arenaSelect";
+  else if (hit.id === "arenaLeft") selectArena(-1);
+  else if (hit.id === "arenaRight") selectArena(1);
+  else if (hit.id === "fight") startMatch();
+}
 
-  ctx.font = "bold 34px ui-monospace, monospace";
-  ctx.fillText("BRO FIGHTERS", canvas.width / 2, 70);
-  ctx.font = "14px ui-monospace, monospace";
-  ctx.fillStyle = "#9a9ab0";
-  ctx.fillText("JUMP to join · BLOCK to leave · PUNCH to start (2+ players)", canvas.width / 2, 104);
+function goToKeyConfig(): void {
+  draftKeyConfig = cloneConfig(keyConfig);
+  awaitingKey = null;
+  screen = "keyConfig";
+}
 
-  let y = 170;
-  ctx.font = "16px ui-monospace, monospace";
-  for (const src of available) {
-    const entry = roster.find((r) => r.source.id === src.id);
-    ctx.fillStyle = entry ? entry.color : "#55556a";
-    ctx.fillText(
-      `${entry ? "● JOINED" : "○ idle  "}   ${src.label}` +
-        (entry ? `   —   ${CHARACTERS[entry.characterId].name}` : ""),
-      canvas.width / 2,
-      y,
-    );
-    y += 30;
-  }
+function goToCharacterSelect(): void {
+  ensureDefaultRoster();
+  screen = "characterSelect";
+}
 
-  ctx.fillStyle = "#6a6a80";
-  ctx.font = "12px ui-monospace, monospace";
-  ctx.fillText(`${roster.length} joined`, canvas.width / 2, y + 20);
-  ctx.textAlign = "left";
+function saveKeyConfig(): void {
+  keyConfig = cloneConfig(draftKeyConfig);
+  input.setKeyboardConfig(keyConfig);
+  localStorage.setItem(KEY_CONFIG_STORAGE, JSON.stringify(keyConfig));
+  screen = "mainMenu";
+}
+
+function setDraftKey(field: ConfigField, code: string): void {
+  const layout = draftKeyConfig[field.player];
+  layout[field.action] = code;
+  if (field.action === "punch") layout.kick = code;
+}
+
+function selectCharacter(delta: number): void {
+  selectedCharacterIndex = wrap(selectedCharacterIndex + delta, CHARACTER_LIST.length);
+  for (const entry of roster) entry.characterId = CHARACTER_LIST[selectedCharacterIndex].id;
+}
+
+function selectArena(delta: number): void {
+  selectedArenaIndex = wrap(selectedArenaIndex + delta, ARENAS.length);
+}
+
+function ensureDefaultRoster(): void {
+  const players = input.listPlayers().filter((p) => p.kind === "keyboard").slice(0, 2);
+  roster = players.map((source, i) => ({
+    source,
+    characterId: CHARACTER_LIST[selectedCharacterIndex].id,
+    color: PLAYER_COLORS[i % PLAYER_COLORS.length],
+  }));
 }
 
 function startMatch(): void {
-  spawns = defaultSpawns(
-    roster.map((r) => ({ id: r.source.id, characterId: r.characterId })),
-  );
+  ensureDefaultRoster();
+  spawns = defaultSpawns(roster.map((r) => ({ id: r.source.id, characterId: r.characterId })));
   state = createGameState(CHARACTERS, spawns, 0x1234);
   prevTransforms = snapshot(state);
-  mode = "play";
+  accumulator = 0;
+  screen = "play";
 }
 
-function backToSelect(): void {
-  mode = "select";
+function backToMainMenu(): void {
   state = null;
+  screen = "mainMenu";
 }
 
-// --- fixed-timestep simulation loop ----------------------------------------
+function joinedView(): PlayerView[] {
+  return roster.map((r, i) => ({ id: r.source.id, label: `P${i + 1}`, color: r.color }));
+}
+
+function loadKeyConfig(): KeyboardConfig {
+  const fallback = cloneConfig(DEFAULT_KEYBOARD_CONFIG);
+  try {
+    const raw = localStorage.getItem(KEY_CONFIG_STORAGE);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw) as Partial<KeyboardConfig>;
+    return {
+      p1: { ...fallback.p1, ...parsed.p1 },
+      p2: { ...fallback.p2, ...parsed.p2 },
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+function cloneConfig(config: KeyboardConfig): KeyboardConfig {
+  return {
+    p1: cloneLayout(config.p1),
+    p2: cloneLayout(config.p2),
+  };
+}
+
+function wrap(value: number, length: number): number {
+  return ((value % length) + length) % length;
+}
+
+// --- Drawing menus ---------------------------------------------------------
+
+function drawCurrentScreen(): void {
+  if (screen === "mainMenu") drawMainMenu();
+  else if (screen === "keyConfig") drawKeyConfig();
+  else if (screen === "characterSelect") drawCharacterSelect();
+  else if (screen === "arenaSelect") drawArenaSelect();
+}
+
+function beginMenu(title: string, subtitle = ""): void {
+  buttons = [];
+  ctx.clearRect(0, 0, W, H);
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#10141f");
+  bg.addColorStop(1, "#18251f");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 46px ui-monospace, monospace";
+  ctx.fillText(title, W / 2, 82);
+  if (subtitle) {
+    ctx.fillStyle = "#9fa9b8";
+    ctx.font = "14px ui-monospace, monospace";
+    ctx.fillText(subtitle, W / 2, 124);
+  }
+}
+
+function drawMainMenu(): void {
+  beginMenu("BRO FIGHTERS", "Local couch brawler prototype");
+  drawButton("start", "Start Game", W / 2 - 140, 205, 280, 54, true);
+  drawButton("keys", "Configure Keys", W / 2 - 140, 275, 280, 54);
+  drawSmallHint("Enter: start  |  C: configure keys", 455);
+}
+
+function drawKeyConfig(): void {
+  beginMenu("CONFIGURE KEYS", "Click a button, then press the key you want.");
+  drawPlayerKeys("Player 1", "p1", 125);
+  drawPlayerKeys("Player 2", "p2", 515);
+  drawButton("saveKeys", "Save Buttons", 292, 454, 160, 42, true);
+  drawButton("resetKeys", "Reset Defaults", 472, 454, 170, 42);
+  drawButton("back", "Back", 662, 454, 110, 42);
+
+  if (awaitingKey) {
+    ctx.fillStyle = "rgba(0,0,0,0.72)";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 26px ui-monospace, monospace";
+    ctx.fillText("Press a key", W / 2, H / 2 - 16);
+    ctx.fillStyle = "#b9c4d6";
+    ctx.font = "14px ui-monospace, monospace";
+    ctx.fillText("Esc cancels", W / 2, H / 2 + 24);
+  }
+}
+
+function drawPlayerKeys(title: string, player: "p1" | "p2", x: number): void {
+  const layout = draftKeyConfig[player];
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 20px ui-monospace, monospace";
+  ctx.fillText(title, x, 160);
+  let y = 196;
+  for (const row of ACTION_ROWS) {
+    ctx.fillStyle = "#b9c4d6";
+    ctx.font = "15px ui-monospace, monospace";
+    ctx.fillText(row.label, x, y + 19);
+    drawButton(`bind:${player}:${row.action}`, keyLabel(layout[row.action]), x + 130, y, 180, 34);
+    y += 38;
+  }
+  ctx.textAlign = "center";
+}
+
+function drawCharacterSelect(): void {
+  const char = CHARACTER_LIST[selectedCharacterIndex];
+  beginMenu("SELECT BRO", "Left / Right to scroll. More bros can join this roster later.");
+  drawButton("charLeft", "<", 150, 245, 54, 54);
+  drawButton("charRight", ">", W - 204, 245, 54, 54);
+
+  const portrait = characterPortraits.get(char.id);
+  if (portrait?.complete) {
+    ctx.drawImage(portrait, 325, 142, 310, 310);
+  }
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 24px ui-monospace, monospace";
+  ctx.fillText(char.name, W / 2, 468);
+  ctx.fillStyle = "#9fa9b8";
+  ctx.font = "13px ui-monospace, monospace";
+  ctx.fillText("Player 1 and Player 2 will both use this template character.", W / 2, 496);
+  drawButton("chooseCharacter", "Choose", W / 2 - 80, 414, 160, 42, true);
+}
+
+function drawArenaSelect(): void {
+  const arena = ARENAS[selectedArenaIndex];
+  beginMenu("SELECT ARENA", "The fight camera pans across the wider field.");
+  drawButton("arenaLeft", "<", 112, 248, 54, 54);
+  drawButton("arenaRight", ">", W - 166, 248, 54, 54);
+
+  if (arenaImage?.complete) {
+    ctx.drawImage(arenaImage, 205, 155, 550, 260);
+    ctx.strokeStyle = "#ffffff55";
+    ctx.strokeRect(205, 155, 550, 260);
+  }
+  ctx.fillStyle = "#f4f7ff";
+  ctx.font = "bold 22px ui-monospace, monospace";
+  ctx.fillText(arena.name, W / 2, 445);
+  drawButton("fight", "Fight", W / 2 - 80, 472, 160, 42, true);
+}
+
+function drawButton(
+  id: string,
+  label: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  primary = false,
+): void {
+  buttons.push({ id, label, x, y, w, h });
+  ctx.fillStyle = primary ? "#65d65f" : "#2a3345";
+  ctx.strokeStyle = primary ? "#b9ff91" : "#61708d";
+  ctx.lineWidth = 2;
+  roundRect(ctx, x, y, w, h, 8);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = primary ? "#071007" : "#f4f7ff";
+  ctx.font = "bold 15px ui-monospace, monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(label, x + w / 2, y + h / 2);
+}
+
+function drawSmallHint(text: string, y: number): void {
+  ctx.fillStyle = "#8f99aa";
+  ctx.font = "13px ui-monospace, monospace";
+  ctx.textAlign = "center";
+  ctx.fillText(text, W / 2, y);
+}
+
+function roundRect(
+  context: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number,
+): void {
+  context.beginPath();
+  context.moveTo(x + r, y);
+  context.arcTo(x + w, y, x + w, y + h, r);
+  context.arcTo(x + w, y + h, x, y + h, r);
+  context.arcTo(x, y + h, x, y, r);
+  context.arcTo(x, y, x + w, y, r);
+  context.closePath();
+}
+
+// --- fixed-timestep simulation loop ---------------------------------------
 
 function snapshot(s: GameState): Map<number, RenderTransform> {
   const m = new Map<number, RenderTransform>();
@@ -183,16 +441,23 @@ function lerpTransforms(
   return m;
 }
 
+function cameraFor(s: GameState): number {
+  if (s.fighters.length === 0) return 0;
+  const avgX = s.fighters.reduce((sum, f) => sum + f.x, 0) / s.fighters.length;
+  const target = avgX - W / 2;
+  return Math.max(0, Math.min(ARENA.xMax - W, target));
+}
+
 let lastTime = performance.now();
 let accumulator = 0;
-const MAX_ACCUM = 0.25; // clamp to avoid spiral-of-death after a tab stall
+const MAX_ACCUM = 0.25;
 
 function frame(now: number): void {
   const dt = Math.min((now - lastTime) / 1000, MAX_ACCUM);
   lastTime = now;
 
-  if (mode === "select") {
-    updateSelect();
+  if (screen !== "play") {
+    drawCurrentScreen();
     requestAnimationFrame(frame);
     return;
   }
@@ -201,8 +466,7 @@ function frame(now: number): void {
   accumulator += dt;
   while (accumulator >= TICK_DT) {
     prevTransforms = snapshot(s);
-    const inputs = input.sample(roster.map((r) => r.source));
-    step(s, inputs);
+    step(s, input.sample(roster.map((r) => r.source)));
     accumulator -= TICK_DT;
 
     if (s.phase === "roundOver" && s.resetTicks <= 0) {
@@ -211,11 +475,12 @@ function frame(now: number): void {
     }
   }
 
-  const alpha = accumulator / TICK_DT;
   renderer.render(s, {
-    interp: lerpTransforms(prevTransforms, s, alpha),
+    interp: lerpTransforms(prevTransforms, s, accumulator / TICK_DT),
     players: joinedView(),
     debug,
+    cameraX: cameraFor(s),
+    arenaImage,
   });
 
   requestAnimationFrame(frame);

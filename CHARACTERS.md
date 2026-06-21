@@ -38,7 +38,8 @@ depth **and** height (3-axis AABB test).
 ```jsonc
 {
   "id": "brawler",            // unique key
-  "name": "Brawler",          // display name
+  "name": "Template Guy",     // display name
+  "portrait": "/assets/icons/template-guy-cutout.png", // character-select portrait
   "spriteSheet": null,        // renderer-only; null => coloured placeholder
   "body": { "w": 22, "d": 16, "h": 58 },   // half-extents; default hurtbox + footprint
   "walkSpeedX": 4.2,          // optional; sim units per tick (x)

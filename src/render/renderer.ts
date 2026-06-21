@@ -31,6 +31,8 @@ export interface RenderView {
   interp: Map<number, RenderTransform>;
   players: PlayerView[];
   debug: boolean;
+  cameraX?: number;
+  arenaImage?: HTMLImageElement | null;
 }
 
 const FLOOR_Y = 360;
@@ -49,15 +51,16 @@ export class Renderer {
 
   render(state: GameState, view: RenderView): void {
     const ctx = this.ctx;
-    this.drawBackground(ctx);
+    const cameraX = view.cameraX ?? 0;
+    this.drawBackground(ctx, view.arenaImage ?? null, cameraX);
 
     // Sort by depth ascending: far (small depth) drawn first/behind.
     const order = [...state.fighters].sort((a, b) => a.depth - b.depth);
     for (const f of order) {
       const t = view.interp.get(f.id) ?? f;
       const char = state.characters[f.characterId];
-      this.drawFighter(ctx, f, char, t, this.colorFor(view, f.id));
-      if (view.debug) this.drawBoxes(ctx, f, char, t);
+      this.drawFighter(ctx, f, char, t, this.colorFor(view, f.id), cameraX);
+      if (view.debug) this.drawBoxes(ctx, f, char, t, cameraX);
     }
 
     this.drawHud(ctx, state, view);
@@ -75,9 +78,12 @@ export class Renderer {
     return 0.85 + t * 0.3;
   }
 
-  private project(t: RenderTransform): { sx: number; feetY: number; scale: number } {
+  private projectWithCamera(
+    t: RenderTransform,
+    cameraX: number,
+  ): { sx: number; feetY: number; scale: number } {
     return {
-      sx: t.x,
+      sx: t.x - cameraX,
       feetY: this.floorScreenY(t.depth) - t.height,
       scale: this.depthScale(t.depth),
     };
@@ -85,21 +91,38 @@ export class Renderer {
 
   // --- drawing ------------------------------------------------------------
 
-  private drawBackground(ctx: CanvasRenderingContext2D): void {
+  private drawBackground(
+    ctx: CanvasRenderingContext2D,
+    arenaImage: HTMLImageElement | null,
+    cameraX: number,
+  ): void {
     ctx.clearRect(0, 0, W, H);
-    // Sky / wall.
-    const sky = ctx.createLinearGradient(0, 0, 0, H);
-    sky.addColorStop(0, "#2a2a3c");
-    sky.addColorStop(1, "#1b1b27");
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, W, H);
+
+    if (arenaImage?.complete && arenaImage.naturalWidth > 0) {
+      const stageW = ARENA.xMax - ARENA.xMin + W;
+      const scale = Math.max(W / arenaImage.naturalWidth, H / arenaImage.naturalHeight);
+      const drawW = Math.max(stageW, arenaImage.naturalWidth * scale);
+      const drawH = Math.max(H, arenaImage.naturalHeight * scale);
+      const maxCamera = Math.max(1, ARENA.xMax - W);
+      const srcX = (cameraX / maxCamera) * Math.max(0, drawW - W);
+      ctx.drawImage(arenaImage, -srcX, 0, drawW, drawH);
+      ctx.fillStyle = "rgba(0,0,0,0.10)";
+      ctx.fillRect(0, 0, W, H);
+    } else {
+      // Sky / wall fallback.
+      const sky = ctx.createLinearGradient(0, 0, 0, H);
+      sky.addColorStop(0, "#2a2a3c");
+      sky.addColorStop(1, "#1b1b27");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
+    }
 
     // Floor band between far and near depth lines.
     const farY = this.floorScreenY(ARENA.depthMin);
     const nearY = this.floorScreenY(ARENA.depthMax);
-    ctx.fillStyle = "#2d2d40";
+    ctx.fillStyle = arenaImage ? "rgba(25,70,35,0.16)" : "#2d2d40";
     ctx.fillRect(0, farY, W, nearY - farY + 60);
-    ctx.strokeStyle = "#3c3c54";
+    ctx.strokeStyle = arenaImage ? "rgba(255,255,255,0.20)" : "#3c3c54";
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(0, farY);
@@ -109,10 +132,10 @@ export class Renderer {
     // Side walls of the play area.
     ctx.strokeStyle = "rgba(255,255,255,0.06)";
     ctx.beginPath();
-    ctx.moveTo(ARENA.xMin, 0);
-    ctx.lineTo(ARENA.xMin, H);
-    ctx.moveTo(ARENA.xMax, 0);
-    ctx.lineTo(ARENA.xMax, H);
+    ctx.moveTo(ARENA.xMin - cameraX, 0);
+    ctx.lineTo(ARENA.xMin - cameraX, H);
+    ctx.moveTo(ARENA.xMax - cameraX, 0);
+    ctx.lineTo(ARENA.xMax - cameraX, H);
     ctx.stroke();
   }
 
@@ -122,8 +145,9 @@ export class Renderer {
     char: CharacterDef,
     t: RenderTransform,
     color: string,
+    cameraX: number,
   ): void {
-    const { sx, feetY, scale } = this.project(t);
+    const { sx, feetY, scale } = this.projectWithCamera(t, cameraX);
     const bodyW = char.body.w * 2 * scale;
     const bodyH = char.body.h * 2 * scale;
 
@@ -180,6 +204,7 @@ export class Renderer {
     f: Fighter,
     char: CharacterDef,
     t: RenderTransform,
+    cameraX: number,
   ): void {
     const def = char.states[f.state];
     const frameId = def?.frames[Math.min(f.frameIndex, def.frames.length - 1)];
@@ -189,8 +214,10 @@ export class Renderer {
     const hurt = frame.hurtboxes?.length
       ? frame.hurtboxes
       : [{ x: 0, z: 0, h: char.body.h, w: char.body.w, d: char.body.d, hh: char.body.h }];
-    for (const b of hurt) this.strokeBox(ctx, t, b, "rgba(80,200,120,0.7)");
-    for (const b of frame.hitboxes ?? []) this.strokeBox(ctx, t, b as Box, "rgba(230,70,70,0.9)");
+    for (const b of hurt) this.strokeBox(ctx, t, b, "rgba(80,200,120,0.7)", cameraX);
+    for (const b of frame.hitboxes ?? []) {
+      this.strokeBox(ctx, t, b as Box, "rgba(230,70,70,0.9)", cameraX);
+    }
   }
 
   private strokeBox(
@@ -198,8 +225,9 @@ export class Renderer {
     t: RenderTransform,
     b: Box,
     color: string,
+    cameraX: number,
   ): void {
-    const cx = t.x + t.facing * b.x;
+    const cx = t.x + t.facing * b.x - cameraX;
     const feetY = this.floorScreenY(t.depth) - t.height;
     const cy = feetY - b.h;
     ctx.strokeStyle = color;

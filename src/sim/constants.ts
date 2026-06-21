@@ -10,7 +10,7 @@ export const TICK_DT = 1 / TICK_HZ; // seconds per logic tick (for reference onl
 /** Arena bounds in sim units. x = left/right, depth = field near/far. */
 export const ARENA = {
   xMin: 40,
-  xMax: 920,
+  xMax: 1680,
   depthMin: 0, // far (drawn behind)
   depthMax: 200, // near (drawn in front)
 };

@@ -81,6 +81,8 @@ export interface Special {
 export interface CharacterDef {
   id: string;
   name: string;
+  /** character-select portrait path, renderer-only. */
+  portrait?: string;
   /** sprite sheet path, renderer-only. May be null for placeholder rendering. */
   spriteSheet: string | null;
   /** body half-extents used for the default hurtbox and body collision */
