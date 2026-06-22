@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="988" height="3108" viewBox="0 0 988 3108">
+  <style>
+    text {
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      fill: #e8eefc;
+    }
+  </style>
+  <text x="206" y="74" text-anchor="end" dominant-baseline="middle">Idle</text>
+  <text x="206" y="222" text-anchor="end" dominant-baseline="middle">Walk</text>
+  <text x="206" y="370" text-anchor="end" dominant-baseline="middle">Run</text>
+  <text x="206" y="518" text-anchor="end" dominant-baseline="middle">Turnaround</text>
+  <text x="206" y="666" text-anchor="end" dominant-baseline="middle">Run Stop / Skid</text>
+  <text x="206" y="814" text-anchor="end" dominant-baseline="middle">Jump</text>
+  <text x="206" y="962" text-anchor="end" dominant-baseline="middle">Landing</text>
+  <text x="206" y="1110" text-anchor="end" dominant-baseline="middle">Dash Jump</text>
+  <text x="206" y="1258" text-anchor="end" dominant-baseline="middle">Punch Combo 1</text>
+  <text x="206" y="1406" text-anchor="end" dominant-baseline="middle">Punch Combo 2</text>
+  <text x="206" y="1554" text-anchor="end" dominant-baseline="middle">Punch Combo 3</text>
+  <text x="206" y="1702" text-anchor="end" dominant-baseline="middle">Dash Attack</text>
+  <text x="206" y="1850" text-anchor="end" dominant-baseline="middle">Dash Jump Attack</text>
+  <text x="206" y="1998" text-anchor="end" dominant-baseline="middle">Air Hit</text>
+  <text x="206" y="2146" text-anchor="end" dominant-baseline="middle">Block / Defend</text>
+  <text x="206" y="2294" text-anchor="end" dominant-baseline="middle">Light Hit</text>
+  <text x="206" y="2442" text-anchor="end" dominant-baseline="middle">Heavy Hit</text>
+  <text x="206" y="2590" text-anchor="end" dominant-baseline="middle">Knockdown / Fall</text>
+  <text x="206" y="2738" text-anchor="end" dominant-baseline="middle">Get Up</text>
+  <text x="206" y="2886" text-anchor="end" dominant-baseline="middle">Death / KO</text>
+  <text x="206" y="3034" text-anchor="end" dominant-baseline="middle">Victory Pose</text>
+  <image href="template-clean-row-sheet.png" x="220" y="0" width="768" height="3108" style="image-rendering: pixelated"/>
+</svg>

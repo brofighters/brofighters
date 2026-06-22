@@ -48,7 +48,7 @@
         96,
         148
       ],
-      "durationTicks": 7
+      "durationTicks": 6
     },
     {
       "id": "walk1",
@@ -58,7 +58,7 @@
         96,
         148
       ],
-      "durationTicks": 7
+      "durationTicks": 6
     },
     {
       "id": "walk2",
@@ -68,7 +68,7 @@
         96,
         148
       ],
-      "durationTicks": 7
+      "durationTicks": 6
     },
     {
       "id": "walk3",
@@ -78,7 +78,7 @@
         96,
         148
       ],
-      "durationTicks": 7
+      "durationTicks": 6
     },
     {
       "id": "run0",
@@ -88,7 +88,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "run1",
@@ -98,7 +98,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "run2",
@@ -108,7 +108,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "run3",
@@ -118,7 +118,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "run4",
@@ -128,7 +128,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "run5",
@@ -138,7 +138,7 @@
         96,
         148
       ],
-      "durationTicks": 5
+      "durationTicks": 4
     },
     {
       "id": "jump0",
@@ -662,6 +662,46 @@
         148
       ],
       "durationTicks": 10
+    },
+    {
+      "id": "walk4",
+      "durationTicks": 6,
+      "spriteRect": [
+        384,
+        148,
+        96,
+        148
+      ]
+    },
+    {
+      "id": "walk5",
+      "durationTicks": 6,
+      "spriteRect": [
+        480,
+        148,
+        96,
+        148
+      ]
+    },
+    {
+      "id": "run6",
+      "durationTicks": 4,
+      "spriteRect": [
+        576,
+        296,
+        96,
+        148
+      ]
+    },
+    {
+      "id": "run7",
+      "durationTicks": 4,
+      "spriteRect": [
+        672,
+        296,
+        96,
+        148
+      ]
     }
   ],
   "states": {
@@ -679,7 +719,9 @@
         "walk0",
         "walk1",
         "walk2",
-        "walk3"
+        "walk3",
+        "walk4",
+        "walk5"
       ],
       "loop": true,
       "control": "free"
@@ -691,7 +733,9 @@
         "run2",
         "run3",
         "run4",
-        "run5"
+        "run5",
+        "run6",
+        "run7"
       ],
       "loop": true,
       "control": "free"

@@ -3,9 +3,9 @@
   "sourceLayout": "art/sheets/template/template-mannequin-64.layout.json",
   "frameWidth": 96,
   "frameHeight": 148,
-  "columns": 7,
+  "columns": 8,
   "rows": 21,
-  "width": 672,
+  "width": 768,
   "height": 3108,
   "rowOrder": [
     "Idle",
@@ -101,6 +101,26 @@
         148
       ]
     },
+    "walk4": {
+      "row": "Walk",
+      "source": "walk4",
+      "rect": [
+        384,
+        148,
+        96,
+        148
+      ]
+    },
+    "walk5": {
+      "row": "Walk",
+      "source": "walk5",
+      "rect": [
+        480,
+        148,
+        96,
+        148
+      ]
+    },
     "run0": {
       "row": "Run",
       "source": "run0",
@@ -156,6 +176,26 @@
       "source": "run5",
       "rect": [
         480,
+        296,
+        96,
+        148
+      ]
+    },
+    "run6": {
+      "row": "Run",
+      "source": "run6",
+      "rect": [
+        576,
+        296,
+        96,
+        148
+      ]
+    },
+    "run7": {
+      "row": "Run",
+      "source": "run7",
+      "rect": [
+        672,
         296,
         96,
         148
