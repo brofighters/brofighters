@@ -26,7 +26,7 @@
         0,
         0,
         96,
-        128
+        148
       ],
       "durationTicks": 20
     },
@@ -36,7 +36,7 @@
         96,
         0,
         96,
-        128
+        148
       ],
       "durationTicks": 20
     },
@@ -44,9 +44,9 @@
       "id": "walk0",
       "spriteRect": [
         0,
-        128,
+        148,
         96,
-        128
+        148
       ],
       "durationTicks": 7
     },
@@ -54,9 +54,9 @@
       "id": "walk1",
       "spriteRect": [
         96,
-        128,
+        148,
         96,
-        128
+        148
       ],
       "durationTicks": 7
     },
@@ -64,9 +64,9 @@
       "id": "walk2",
       "spriteRect": [
         192,
-        128,
+        148,
         96,
-        128
+        148
       ],
       "durationTicks": 7
     },
@@ -74,9 +74,9 @@
       "id": "walk3",
       "spriteRect": [
         288,
-        128,
+        148,
         96,
-        128
+        148
       ],
       "durationTicks": 7
     },
@@ -84,9 +84,9 @@
       "id": "run0",
       "spriteRect": [
         0,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -94,9 +94,9 @@
       "id": "run1",
       "spriteRect": [
         96,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -104,9 +104,9 @@
       "id": "run2",
       "spriteRect": [
         192,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -114,9 +114,9 @@
       "id": "run3",
       "spriteRect": [
         288,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -124,9 +124,9 @@
       "id": "run4",
       "spriteRect": [
         384,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -134,9 +134,9 @@
       "id": "run5",
       "spriteRect": [
         480,
-        256,
+        296,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -144,9 +144,9 @@
       "id": "jump0",
       "spriteRect": [
         0,
-        640,
+        740,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -154,9 +154,9 @@
       "id": "block0",
       "spriteRect": [
         384,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 8
     },
@@ -164,9 +164,9 @@
       "id": "hit0",
       "spriteRect": [
         0,
-        1920,
+        2220,
         96,
-        128
+        148
       ],
       "durationTicks": 6
     },
@@ -174,9 +174,9 @@
       "id": "kd0",
       "spriteRect": [
         0,
-        2176,
+        2516,
         96,
-        128
+        148
       ],
       "durationTicks": 7
     },
@@ -184,9 +184,9 @@
       "id": "p1_0",
       "spriteRect": [
         0,
-        1024,
+        1184,
         96,
-        128
+        148
       ],
       "durationTicks": 3
     },
@@ -194,9 +194,9 @@
       "id": "p1_1",
       "spriteRect": [
         96,
-        1024,
+        1184,
         96,
-        128
+        148
       ],
       "durationTicks": 4,
       "hitboxes": [
@@ -221,9 +221,9 @@
       "id": "p1_2",
       "spriteRect": [
         192,
-        1024,
+        1184,
         96,
-        128
+        148
       ],
       "durationTicks": 6,
       "cancelInto": [
@@ -234,9 +234,9 @@
       "id": "p2_0",
       "spriteRect": [
         0,
-        1152,
+        1332,
         96,
-        128
+        148
       ],
       "durationTicks": 3
     },
@@ -244,9 +244,9 @@
       "id": "p2_1",
       "spriteRect": [
         96,
-        1152,
+        1332,
         96,
-        128
+        148
       ],
       "durationTicks": 4,
       "hitboxes": [
@@ -271,9 +271,9 @@
       "id": "p2_2",
       "spriteRect": [
         192,
-        1152,
+        1332,
         96,
-        128
+        148
       ],
       "durationTicks": 7,
       "cancelInto": [
@@ -284,9 +284,9 @@
       "id": "p3_0",
       "spriteRect": [
         0,
-        1280,
+        1480,
         96,
-        128
+        148
       ],
       "durationTicks": 3
     },
@@ -294,9 +294,9 @@
       "id": "p3_1",
       "spriteRect": [
         96,
-        1280,
+        1480,
         96,
-        128
+        148
       ],
       "durationTicks": 3
     },
@@ -304,9 +304,9 @@
       "id": "sp_0",
       "spriteRect": [
         0,
-        1536,
+        1776,
         96,
-        128
+        148
       ],
       "durationTicks": 4,
       "impulse": {
@@ -318,9 +318,9 @@
       "id": "sp_1",
       "spriteRect": [
         96,
-        1536,
+        1776,
         96,
-        128
+        148
       ],
       "durationTicks": 5,
       "hitboxes": [
@@ -343,9 +343,9 @@
       "id": "sp_2",
       "spriteRect": [
         192,
-        1536,
+        1776,
         96,
-        128
+        148
       ],
       "durationTicks": 5,
       "hitboxes": [
@@ -368,9 +368,9 @@
       "id": "sp_3",
       "spriteRect": [
         0,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 4
     },
@@ -381,7 +381,7 @@
         192,
         0,
         96,
-        128
+        148
       ]
     },
     {
@@ -389,9 +389,9 @@
       "durationTicks": 5,
       "spriteRect": [
         96,
-        640,
+        740,
         96,
-        128
+        148
       ]
     },
     {
@@ -399,9 +399,9 @@
       "durationTicks": 5,
       "spriteRect": [
         192,
-        640,
+        740,
         96,
-        128
+        148
       ]
     },
     {
@@ -409,9 +409,9 @@
       "durationTicks": 5,
       "spriteRect": [
         288,
-        640,
+        740,
         96,
-        128
+        148
       ]
     },
     {
@@ -419,9 +419,9 @@
       "durationTicks": 4,
       "spriteRect": [
         0,
-        1792,
+        2072,
         96,
-        128
+        148
       ]
     },
     {
@@ -429,9 +429,9 @@
       "durationTicks": 6,
       "spriteRect": [
         96,
-        1920,
+        2220,
         96,
-        128
+        148
       ]
     },
     {
@@ -439,9 +439,9 @@
       "durationTicks": 7,
       "spriteRect": [
         96,
-        2176,
+        2516,
         96,
-        128
+        148
       ]
     },
     {
@@ -449,9 +449,9 @@
       "durationTicks": 7,
       "spriteRect": [
         192,
-        2176,
+        2516,
         96,
-        128
+        148
       ]
     },
     {
@@ -459,9 +459,9 @@
       "durationTicks": 7,
       "spriteRect": [
         288,
-        2176,
+        2516,
         96,
-        128
+        148
       ]
     },
     {
@@ -469,9 +469,9 @@
       "durationTicks": 16,
       "spriteRect": [
         288,
-        2432,
+        2812,
         96,
-        128
+        148
       ]
     },
     {
@@ -479,9 +479,9 @@
       "durationTicks": 4,
       "spriteRect": [
         288,
-        1280,
+        1480,
         96,
-        128
+        148
       ]
     },
     {
@@ -489,9 +489,9 @@
       "durationTicks": 5,
       "spriteRect": [
         384,
-        1280,
+        1480,
         96,
-        128
+        148
       ]
     },
     {
@@ -499,9 +499,9 @@
       "durationTicks": 8,
       "spriteRect": [
         480,
-        1280,
+        1480,
         96,
-        128
+        148
       ]
     },
     {
@@ -509,9 +509,9 @@
       "durationTicks": 4,
       "spriteRect": [
         96,
-        1408,
+        1628,
         96,
-        128
+        148
       ]
     },
     {
@@ -519,18 +519,18 @@
       "durationTicks": 10,
       "spriteRect": [
         192,
-        1408,
+        1628,
         96,
-        128
+        148
       ]
     },
     {
       "id": "p3_2",
       "spriteRect": [
         192,
-        1280,
+        1480,
         96,
-        128
+        148
       ],
       "durationTicks": 4,
       "hitboxes": [
@@ -552,9 +552,9 @@
       "id": "dj_0",
       "spriteRect": [
         0,
-        512,
+        592,
         96,
-        128
+        148
       ],
       "durationTicks": 4
     },
@@ -562,9 +562,9 @@
       "id": "dj_1",
       "spriteRect": [
         96,
-        512,
+        592,
         96,
-        128
+        148
       ],
       "durationTicks": 4
     },
@@ -572,9 +572,9 @@
       "id": "dj_2",
       "spriteRect": [
         192,
-        512,
+        592,
         96,
-        128
+        148
       ],
       "durationTicks": 4
     },
@@ -582,9 +582,9 @@
       "id": "dj_3",
       "spriteRect": [
         0,
-        768,
+        888,
         96,
-        128
+        148
       ],
       "durationTicks": 6
     },
@@ -592,9 +592,9 @@
       "id": "dja_0",
       "spriteRect": [
         0,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 4
     },
@@ -602,9 +602,9 @@
       "id": "dja_1",
       "spriteRect": [
         96,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 4,
       "hitboxes": [
@@ -627,9 +627,9 @@
       "id": "dja_2",
       "spriteRect": [
         192,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -637,9 +637,9 @@
       "id": "dja_3",
       "spriteRect": [
         288,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 5
     },
@@ -647,9 +647,9 @@
       "id": "dja_4",
       "spriteRect": [
         384,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 8
     },
@@ -657,9 +657,9 @@
       "id": "dja_5",
       "spriteRect": [
         480,
-        1408,
+        1628,
         96,
-        128
+        148
       ],
       "durationTicks": 10
     }

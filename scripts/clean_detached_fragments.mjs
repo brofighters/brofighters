@@ -14,7 +14,7 @@
 import { deflateSync, inflateSync } from "node:zlib";
 import { readFileSync, writeFileSync } from "node:fs";
 
-const CW = 96, CH = 128;
+const CW = 96, CH = 148;
 const ALPHA_MIN = 40;
 const FRAG_MAX_RATIO = 0.4; // only erase components smaller than 40% of the body
 

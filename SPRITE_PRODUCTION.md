@@ -4,14 +4,18 @@ This is the sprite contract for Bro Fighters character sheets.
 
 ## Final Runtime Format
 
-- Each animation frame is exactly `96 x 128` pixels.
+- Author each pose as a `96 x 128` cell, but the **packed runtime cell is `96 x 148`**:
+  the character art sits in the bottom `128` px and the top `20` px is transparent
+  **headroom** (so tall hair/poses never butt against the row above). The current
+  sheet `template-clean-row-sheet.png` already uses this — frame rects are `96 x 148`.
 - Use one row per action.
 - Rows may have different numbers of real frames.
 - The packed sheet width should match the longest row, with empty transparent cells at
   the end of shorter rows if needed.
 - Runtime sheets should be transparent PNGs, not SVG mockups.
 - The frame grid has no visible lines, gutters, labels, borders, or background colors.
-- Each frame rectangle in character JSON is `[x, y, 96, 128]`.
+- Each frame rectangle in character JSON is `[x, y, 96, 148]` (feet anchored at the
+  cell bottom; the renderer draws the full cell anchored at the feet).
 
 ## Per-Frame Generation
 
