@@ -4,7 +4,9 @@ An LF2-style 2.5D local PvP brawler for in-person couch sessions. Browser-based,
 gamepad-driven, built for N fighters in a free-for-all.
 
 > Project context and rules live in [CLAUDE.md](CLAUDE.md). Character data format is
-> documented in [CHARACTERS.md](CHARACTERS.md).
+> documented in [CHARACTERS.md](CHARACTERS.md). Runtime sprite production is documented
+> in [SPRITE_PRODUCTION.md](SPRITE_PRODUCTION.md). Bay and Lossy art briefs live in
+> [BAY_SPRITE_BRIEF.md](BAY_SPRITE_BRIEF.md) and [LOSSY_SPRITE_BRIEF.md](LOSSY_SPRITE_BRIEF.md).
 
 ## Run it
 
