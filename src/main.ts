@@ -92,19 +92,22 @@ window.addEventListener("keydown", handleKeyDown);
 canvas.addEventListener("click", handleClick);
 
 function loadImages(): void {
+  const base = import.meta.env.BASE_URL;
+  const url = (path: string) => base.replace(/\/$/, "") + path;
+
   arenaImage = new Image();
-  arenaImage.src = ARENAS[0].imagePath;
+  arenaImage.src = url(ARENAS[0].imagePath);
 
   for (const character of CHARACTER_LIST) {
     if (character.portrait) {
       const portrait = new Image();
-      portrait.src = character.portrait;
+      portrait.src = url(character.portrait);
       characterPortraits.set(character.id, portrait);
     }
 
     if (character.spriteSheet) {
       const sheet = new Image();
-      sheet.src = character.spriteSheet;
+      sheet.src = url(character.spriteSheet);
       spriteSheets.set(character.id, sheet);
     }
   }
