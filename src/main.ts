@@ -52,6 +52,11 @@ const ARENAS: ArenaOption[] = [
     name: "Raffles Institution",
     imagePath: "/assets/arenas/raffles-institution.png",
   },
+  {
+    id: "raffles-junior-college",
+    name: "Raffles Junior College",
+    imagePath: "/assets/arenas/raffles-junior-college.png",
+  },
 ];
 
 const ACTION_ROWS: { action: KeyAction; label: string }[] = [
@@ -92,25 +97,25 @@ window.addEventListener("keydown", handleKeyDown);
 canvas.addEventListener("click", handleClick);
 
 function loadImages(): void {
-  const base = import.meta.env.BASE_URL;
-  const url = (path: string) => base.replace(/\/$/, "") + path;
-
-  arenaImage = new Image();
-  arenaImage.src = url(ARENAS[0].imagePath);
+  loadSelectedArenaImage();
 
   for (const character of CHARACTER_LIST) {
     if (character.portrait) {
       const portrait = new Image();
-      portrait.src = url(character.portrait);
+      portrait.src = assetUrl(character.portrait);
       characterPortraits.set(character.id, portrait);
     }
 
     if (character.spriteSheet) {
       const sheet = new Image();
-      sheet.src = url(character.spriteSheet);
+      sheet.src = assetUrl(character.spriteSheet);
       spriteSheets.set(character.id, sheet);
     }
   }
+}
+
+function assetUrl(path: string): string {
+  return import.meta.env.BASE_URL.replace(/\/$/, "") + path;
 }
 
 function handleKeyDown(e: KeyboardEvent): void {
@@ -217,6 +222,12 @@ function selectCharacter(playerIndex: number, delta: number): void {
 
 function selectArena(delta: number): void {
   selectedArenaIndex = wrap(selectedArenaIndex + delta, ARENAS.length);
+  loadSelectedArenaImage();
+}
+
+function loadSelectedArenaImage(): void {
+  arenaImage = new Image();
+  arenaImage.src = assetUrl(ARENAS[selectedArenaIndex].imagePath);
 }
 
 function ensureDefaultRoster(): void {
