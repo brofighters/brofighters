@@ -27,6 +27,7 @@ import { Renderer, type RenderTransform, type PlayerView } from "./render/render
 
 const PLAYER_COLORS = ["#e85d5d", "#5da9e8"];
 const KEY_CONFIG_STORAGE = "bro-fighters-key-config-v1";
+const ASSET_VERSION = "pope-height-20260623";
 const W = 960;
 const H = 540;
 
@@ -115,7 +116,7 @@ function loadImages(): void {
 }
 
 function assetUrl(path: string): string {
-  return import.meta.env.BASE_URL.replace(/\/$/, "") + path;
+  return `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}?v=${ASSET_VERSION}`;
 }
 
 function handleKeyDown(e: KeyboardEvent): void {
