@@ -13,6 +13,9 @@ import lawyerVd from "./lawyer-vd.json";
 import lossy from "./lossy.json";
 import lewd from "./lewd.json";
 import yao from "./yao.json";
+import popeBenedictMax from "./pope-benedict-max.json";
+import dentistIvan from "./dentist-ivan.json";
+import allInBay from "./all-in-bay.json";
 
 // JSON imports widen tuples (e.g. spriteRect) to number[]; the data is authored
 // to match CharacterDef, so cast through unknown.
@@ -25,6 +28,9 @@ export const CHARACTERS: Record<string, CharacterDef> = {
   [lossy.id]: lossy as unknown as CharacterDef,
   [lewd.id]: lewd as unknown as CharacterDef,
   [yao.id]: yao as unknown as CharacterDef,
+  [popeBenedictMax.id]: popeBenedictMax as unknown as CharacterDef,
+  [dentistIvan.id]: dentistIvan as unknown as CharacterDef,
+  [allInBay.id]: allInBay as unknown as CharacterDef,
 };
 
 export const CHARACTER_LIST: CharacterDef[] = Object.values(CHARACTERS);
